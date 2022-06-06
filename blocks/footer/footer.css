@@ -3,6 +3,8 @@
 	min-height: 18px;
 	margin: 0 auto;
 	padding-bottom: 60px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 @media (max-width: 600px) {
