@@ -1,0 +1,23 @@
+.popup__input {
+	border: 0;
+  width: 358px;
+  height: 27px;
+  box-sizing: border-box;
+  opacity: 0.2;
+  border-bottom: 1px solid #000000;
+  background-color: transparent;
+  padding: 0;
+}
+
+.popup__input::placeholder {
+	font-size: 14px;
+  font-family: 'Alegreya Sans';
+  line-height: 20px;
+  color: #bcbcc4;
+}
+
+@media (max-width: 643px) {
+  .popup__input {
+    width: 238px;
+  }
+}

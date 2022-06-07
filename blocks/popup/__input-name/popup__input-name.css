@@ -1,0 +1,9 @@
+.popup__input-name {
+  margin-top: 54px;
+}
+
+@media (max-width: 643px) {
+  .popup__input-name {
+    margin-top: 75px;
+  }
+}
