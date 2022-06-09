@@ -1,19 +1,19 @@
 .popup__input {
-	border: 0;
+  border: 0;
   width: 358px;
   height: 27px;
   box-sizing: border-box;
-  opacity: 0.2;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  /*Здесь переделал, чтобы не заморачиваться. Стоял opacity: 0.2, который влиял на всё, в том числе на вводимый текст. Сделал альфа-каналом. Теперь только бордер "серый".*/
   background-color: transparent;
   padding: 0;
 }
 
 .popup__input::placeholder {
-	font-size: 14px;
+  font-size: 14px;
   font-family: 'Alegreya Sans';
   line-height: 20px;
-  color: #bcbcc4;
+  color: #00000051;
 }
 
 @media (max-width: 643px) {

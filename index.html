@@ -1,158 +1,165 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="pages/index.css">
-	<title>Место</title>
-</head>
-<body class="root">
-	<div class="page">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Третья проектная работа">
+    <meta name="keywords" content="ЯПрактикум, Проектная работа">
+    <meta name="author" content="Юрий Федулов">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Место</title>
+  </head>
 
-		<header class="header">
+  <body class="root"> <!--У меня возник большой вопрос. Как нужно делать проект по Figma? Я указал отступы, которые прописаны, но визуально это не совпадает с тем, что в Фигме. Хочется на будущее понимать, делать проект визуально или же по отступам? Просто в задаче не стояло делать "пиксель в пиксель", по-этому я делал по отступам и перепроверял несколько раз. На это ушло время, а как оказалось - зря. Значит всегда делать визуально проект? Чтобы он был, как в Figma, даже если отступы не будут совпадать? Хотелось бы получить развернутый ответ, чтобы понимать, как это в реальных проектах работает. Спасибо! :)-->
 
-			<img class="header__logo" src="images/mesto-logo.svg" alt="Лого">
+    <div class="page"> <!--Поправил форматирование. Теперь не должно расползаться. Так случайно вышло. Но "стиль" написания я бы хотел сохранить. Мне так удобно. Понимаю, что на работе придётся его подстраивать под стиль проекта/команды-->
 
-			<div class="header__line"></div>
-			
-		</header>
+      <header class="header">
 
-		<main class="content">
+        <img class="header__logo" src="images/mesto-logo.svg" alt="Лого">
 
-			<section class="profile">
+      </header>
 
-				<img class="profile__avatar" src="images/avatar.png" alt="фото-аватар">
+      <main class="content">
 
-				<div class="profile__info">
+        <section class="profile">
 
-					<h2 class="profile__name">Жак-Ив Кусто</h2>
+          <img class="profile__avatar" src="images/avatar.jpg" alt="фото-аватар">
 
-					<button class="profile__button-edit"></button>
+          <div class="profile__info">
 
-					<p class="profile__occupation">Исследователь океана</p>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
 
-				</div>
+            <button class="profile__button-edit" type="button" aria-label="edit"></button>
 
-				<button class="profile__button-add"></button>
+            <p class="profile__occupation">Исследователь океана</p>
 
-			</section>
+          </div>
 
-			<section class="popup">
+          <button class="profile__button-add" type="button" aria-label="add"></button>
 
-				<div class="popup__container">
+        </section>
 
-					<h2 class="popup__heading">Редактировать профиль</h2>
+        <section class="popup">
 
-					<fieldset class="popup__input-container">
+          <div class="popup__container">
 
-						<input class="popup__input popup__input-name" type="text" placeholder="Имя">
-						<input class="popup__input popup__input-occupation" type="text" placeholder="О себе">
+            <h2 class="popup__heading">Редактировать профиль</h2>
 
-					</fieldset>
+            <form class="popup__input-container" name="user">
 
-					<button class="popup__close-button"></button>
+              <input class="popup__input popup__input_type_name" name="name" type="text" placeholder="Имя">
+              <input class="popup__input popup__input_type_occupation" name="occupation" type="text" placeholder="О себе">
 
-					<button class="popup__submit-button">Сохранить</button>
+              <button class="popup__close-button" type="button" aria-label="close"></button>
+              <!--Привет! :) Не совсем понял, как пользоваться aria-label. Должен ли обязательно быть текст/символ в кнопке? В примере было прописано X внутри кнопки.-->
 
-				</div>
+              <button class="popup__submit-button" type="submit" aria-label="save">Сохранить</button>
+              <!--Здесь возник вопрос/недопонимание. В комментарии написано, что кнопка "Сохранить" должна быть внутри формы. Только она или же можно все кнопки внутрь формы можно вложить?-->
 
-			</section>
+            </form>
 
-			<section class="elements">
+          </div>
 
-				<div class="element">
+        </section>
 
-					<img class="element__image" src="images/karachaevo.png" alt="Фото">
+        <section class="elements">
 
-					<div class="element__container">
+          <div class="element">
 
-						<h2 class="element__title">Карачаевск</h2>
+            <img class="element__image" src="images/karachaevo.jpg" alt="Фото"> <!--Не ожидал, что разница в размере настолько существенна jpg/png. Спасибо, полезный комментарий! Буду знать! :)-->
+						
+						<div class="element__container">
 
-						<button class="element__like"></button>
+              <h2 class="element__title">Карачаевск</h2>
 
-					</div>
+              <button class="element__like" type="button" aria-label="like"></button>
 
-				</div>
+            </div>
 
-				<div class="element">
+          </div>
 
-					<img class="element__image" src="images/elbrus.png" alt="Фото">
+          <div class="element">
+						
+						<img class="element__image" src="images/elbrus.jpg" alt="Фото">
 
-					<div class="element__container">
+            <div class="element__container">
 
-						<h2 class="element__title">Гора Эльбрус</h2>
+              <h2 class="element__title">Гора Эльбрус</h2>
 
-						<button class="element__like"></button>
+              <button class="element__like" type="button" aria-label="like"></button>
 
-					</div>
+            </div>
 
-				</div>
+          </div>
 
-				<div class="element">
+          <div class="element">
+						
+            <img class="element__image" src="images/dombai.jpg" alt="Фото">
 
-					<img class="element__image" src="images/dombai.png" alt="Фото">
+            <div class="element__container">
 
-					<div class="element__container">
+              <h2 class="element__title">Домбай</h2>
 
-						<h2 class="element__title">Домбай</h2>
+              <button class="element__like" type="button" aria-label="like"></button>
 
-						<button class="element__like"></button>
+            </div>
 
-					</div>
+          </div>
 
-				</div>
+          <div class="element">
 
-				<div class="element">
+            <img class="element__image" src="images/elbrus.jpg" alt="Фото">
 
-					<img class="element__image" src="images/elbrus.png" alt="Фото">
+            <div class="element__container">
 
-					<div class="element__container">
+              <h2 class="element__title">Гора Эльбрус</h2>
 
-						<h2 class="element__title">Гора Эльбрус</h2>
+              <button class="element__like" type="button" aria-label="like"></button>
 
-						<button class="element__like"></button>
+            </div>
 
-					</div>
+          </div>
 
-				</div>
+          <div class="element">
 
-				<div class="element">
+            <img class="element__image" src="images/dombai.jpg" alt="Фото">
 
-					<img class="element__image" src="images/dombai.png" alt="Фото">
+            <div class="element__container">
 
-					<div class="element__container">
+              <h2 class="element__title">Домбай</h2>
 
-						<h2 class="element__title">Домбай</h2>
+              <button class="element__like" type="button" aria-label="like"></button>
 
-						<button class="element__like"></button>
+            </div>
 
-					</div>
+          </div>
 
-				</div>
+          <div class="element">
 
-				<div class="element">
+            <img class="element__image" src="images/karachaevo.jpg" alt="Фото">
 
-					<img class="element__image" src="images/karachaevo.png" alt="Фото">
+            <div class="element__container">
 
-					<div class="element__container">
+              <h2 class="element__title">Карачаево-Черкессия</h2>
 
-						<h2 class="element__title">Карачаево-Черкессия</h2>
+              <button class="element__like" type="button" aria-label="like"></button>
 
-						<button class="element__like"></button>
+            </div>
 
-					</div>
+          </div>
 
-				</div>
+        </section>
 
-			</section>
+      </main>
 
-		</main>
+      <footer class="footer">
 
-		<footer class="footer">
-			<p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-		</footer>
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
 
-	</div>
-</body>
+      </footer>
+
+    </div>
+  </body>
 </html>

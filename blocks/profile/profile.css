@@ -14,8 +14,8 @@
 
 @media (max-width: 600px) {
 	.profile {
-    align-items: center;
-    flex-direction: column;
-    padding: 0 19px;
+		align-items: center;
+		flex-direction: column;
+		padding: 0 19px;
 	}
 }
