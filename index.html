@@ -13,7 +13,7 @@
 
   <body class="root"> <!--У меня возник большой вопрос. Как нужно делать проект по Figma? Я указал отступы, которые прописаны, но визуально это не совпадает с тем, что в Фигме. Хочется на будущее понимать, делать проект визуально или же по отступам? Просто в задаче не стояло делать "пиксель в пиксель", по-этому я делал по отступам и перепроверял несколько раз. На это ушло время, а как оказалось - зря. Значит всегда делать визуально проект? Чтобы он был, как в Figma, даже если отступы не будут совпадать? Хотелось бы получить развернутый ответ, чтобы понимать, как это в реальных проектах работает. Спасибо! :)-->
 
-    <div class="page"> <!--Поправил форматирование. Теперь не должно расползаться. Так случайно вышло. Но "стиль" написания я бы хотел сохранить. Мне так удобно. Понимаю, что на работе придётся его подстраивать под стиль проекта/команды-->
+    <div class="page">
 
       <header class="header">
 
@@ -52,13 +52,11 @@
               <input class="popup__input popup__input_type_name" name="name" type="text" placeholder="Имя">
               <input class="popup__input popup__input_type_occupation" name="occupation" type="text" placeholder="О себе">
 
-              <button class="popup__close-button" type="button" aria-label="close"></button>
-              <!--Привет! :) Не совсем понял, как пользоваться aria-label. Должен ли обязательно быть текст/символ в кнопке? В примере было прописано X внутри кнопки.-->
-
               <button class="popup__submit-button" type="submit" aria-label="save">Сохранить</button>
-              <!--Здесь возник вопрос/недопонимание. В комментарии написано, что кнопка "Сохранить" должна быть внутри формы. Только она или же можно все кнопки внутрь формы можно вложить?-->
-
+            
             </form>
+
+            <button class="popup__close-button" type="button" aria-label="close"></button>
 
           </div>
 
@@ -68,9 +66,9 @@
 
           <div class="element">
 
-            <img class="element__image" src="images/karachaevo.jpg" alt="Фото"> <!--Не ожидал, что разница в размере настолько существенна jpg/png. Спасибо, полезный комментарий! Буду знать! :)-->
+            <img class="element__image" src="images/karachaevo.jpg" alt="Фото">
 						
-						<div class="element__container">
+            <div class="element__container">
 
               <h2 class="element__title">Карачаевск</h2>
 

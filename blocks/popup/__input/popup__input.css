@@ -2,16 +2,18 @@
   border: 0;
   width: 358px;
   height: 27px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
   box-sizing: border-box;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  /*Здесь переделал, чтобы не заморачиваться. Стоял opacity: 0.2, который влиял на всё, в том числе на вводимый текст. Сделал альфа-каналом. Теперь только бордер "серый".*/
   background-color: transparent;
   padding: 0;
 }
 
 .popup__input::placeholder {
   font-size: 14px;
-  font-family: 'Alegreya Sans';
+  font-family: 'Inter';
   line-height: 20px;
   color: #00000051;
 }

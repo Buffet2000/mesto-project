@@ -1,7 +1,7 @@
 .profile {
 	max-width: 880px;
 	display: flex;
-	margin: 0 auto 34px;
+	margin: 0 auto 50px;
 	padding: 0;
 }
 
@@ -12,10 +12,11 @@
 	}
 }
 
-@media (max-width: 600px) {
+@media (max-width: 643px) {
 	.profile {
 		align-items: center;
 		flex-direction: column;
 		padding: 0 19px;
+		margin-bottom: 34px;
 	}
 }
