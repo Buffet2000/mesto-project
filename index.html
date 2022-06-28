@@ -41,7 +41,7 @@
 
         </section>
 
-        <section class="popup">
+        <section class="popup" id="edit_profile">
 
           <div class="popup__container">
 
@@ -56,7 +56,28 @@
             
             </form>
 
-            <button class="popup__close-button" type="button" aria-label="close"></button>
+            <button class="popup__close-button" type="button" aria-label="close" id="close_profile"></button>
+
+          </div>
+
+        </section>
+
+        <section class="popup" id="add_new_place">
+
+          <div class="popup__container">
+
+            <h2 class="popup__heading">Новое место</h2>
+
+            <form class="popup__input-container" name="new_place">
+
+              <input class="popup__input popup__input_type_name" name="name" type="text" placeholder="Название">
+              <input class="popup__input popup__input_type_occupation" name="occupation" type="text" placeholder="Ссылка на картинку">
+
+              <button class="popup__submit-button" type="submit" aria-label="save">Создать</button>
+            
+            </form>
+
+            <button class="popup__close-button" type="button" aria-label="close" id="close_new_place"></button>
 
           </div>
 
