@@ -6,6 +6,10 @@ let addButton = document.querySelector('.profile__button-add');
 let addPlace = document.getElementById('add_new_place');
 let closePlace = document.getElementById('close_new_place');
 
+let images = document.querySelector('.elements');
+let createButton = document.getElementById('create');
+
+/*Открывание/закрывание окон*/
 function edit() {
 	editProfile.classList.add('popup_opened');
 }
@@ -26,3 +30,5 @@ editButton.addEventListener ('click', edit);
 closeProfile.addEventListener ('click', close_profile);
 addButton.addEventListener('click', add);
 closePlace.addEventListener('click', close_place);
+
+
