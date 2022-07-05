@@ -52,7 +52,7 @@
               <input class="popup__input popup__input_type_name" name="name" type="text" placeholder="Имя">
               <input class="popup__input popup__input_type_occupation" name="occupation" type="text" placeholder="О себе">
 
-              <button class="popup__submit-button" type="submit" aria-label="save">Сохранить</button>
+              <button class="popup__submit-button" type="submit" aria-label="save" id="save_profile">Сохранить</button>
             
             </form>
 
@@ -85,7 +85,7 @@
 
         <section class="elements">
 
-          <div class="element">
+          <!--<div class="element">
 
             <img class="element__image" src="images/karachaevo.jpg" alt="Фото">
 						
@@ -153,11 +153,13 @@
 
             </div>
 
-          </div>
+          </div>-->
 
           <div class="element">
 
             <img class="element__image" src="images/karachaevo.jpg" alt="Фото">
+
+            <button class="element__delete" type="button" aria-label="delete" id="delete-button"></button>
 
             <div class="element__container">
 
@@ -175,11 +177,13 @@
 
               <img class="element__image" src="" alt="Фото">
 
+              <button class="element__delete" type="button" aria-label="delete" id="delete-button"></button>
+
               <div class="element__container">
 
                 <h2 class="element__title"></h2>
 
-                <button class="element__like" type="button" aria-label="like"></button>
+                <button class="element__like" type="button" aria-label="like" id="like-button"></button>
 
               </div>
 
@@ -199,6 +203,7 @@
 
     </div>
 
+    <script src="script/initial-cards.js"></script>
     <script src="script/index.js"></script>
 
   </body>
