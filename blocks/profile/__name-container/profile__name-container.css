@@ -1,0 +1,13 @@
+.profile__name-container {
+	display: flex;
+	align-content: space-between;
+	justify-content: baseline;
+}
+
+@media (max-width: 642px) {
+	.profile__name-container {
+		padding-left: 25px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

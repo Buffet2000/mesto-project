@@ -1,6 +1,18 @@
-.profile__info {
+/*.profile__info {
 	max-width: 336px;
 	display: inline-grid;
+	grid-template-columns: 294px 25px;
+	grid-template-rows: auto;
+	gap: 0 18px;
+	margin: 0 0 0 30px;
+	margin-top: 17px;
+	margin-bottom: 17px;
+}*/
+.profile__info {
+	max-width: 336px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 	grid-template-columns: 294px 25px;
 	grid-template-rows: auto;
 	gap: 0 18px;
@@ -12,7 +24,7 @@
 @media (max-width: 700px) {
 	.profile__info {
 		max-width: 282px;
-		grid-template-columns: 235px 47px;
+		grid-template-columns: 1fr/*235px 47px*/;
 		padding-bottom: 36px;
 		margin-left: 30px;
 		gap: 0 10px;
@@ -22,8 +34,10 @@
 @media (max-width: 642px) {
 	.profile__info {
 		max-width: 282px;
+		grid-template-columns: 1fr;
 		padding: 0 0 32px 0;
 		margin: 0 auto;
 		gap: 0;
+	
 	}
 }
