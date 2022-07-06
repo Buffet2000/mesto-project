@@ -25,6 +25,9 @@ const initialCards = [
 	}
 	];
 
+/*Переменная для template*/
+const cardTemplate = document.querySelector('#element-template').content;
+
 /*Кнопки/окна профиля*/
 const buttonProfileEdit = document.querySelector('.profile__button-edit');
 const buttonProfileClose = document.querySelector('#close_profile');
@@ -107,7 +110,6 @@ initialCards.forEach((elem) => {
 
 /*Создание новой карточки (включая все кнопки)*/
 function create(name, link) {
-	const cardTemplate = document.querySelector('#element-template').content;
 	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 	const cardImage = cardElement.querySelector('.element__image');
 
