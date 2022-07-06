@@ -1,7 +1,7 @@
 .profile__name-container {
 	display: flex;
 	align-content: space-between;
-	justify-content: baseline;
+	margin-left: 0;
 }
 
 @media (max-width: 642px) {

@@ -1,6 +1,7 @@
 .profile__name {
 	text-align: start;
 	margin: 0;
+	margin-right: 18px;
 	padding-top: 6px;
 	font-weight: 500;
 	font-size: 42px;
