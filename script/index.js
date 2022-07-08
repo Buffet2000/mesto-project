@@ -54,10 +54,10 @@ const buttonAddCard = document.querySelector('.profile__button-add');
 const buttonNewPlaceClose = document.querySelector('#close_new_place');
 const placeForm = document.querySelector('#popup_place');
 
-const PopupPlaceAdd = document.querySelector('#add_new_place');
+const popupPlaceAdd = document.querySelector('#add_new_place');
 
-const InputPlaceName = document.querySelector('.popup__input_type_place-name');
-const InputPlaceLink = document.querySelector('.popup__input_type_place-link');
+const inputPlaceName = document.querySelector('.popup__input_type_place-name');
+const inputPlaceLink = document.querySelector('.popup__input_type_place-link');
 
 /*Контейнет для всех фото-карточек*/
 const cardContainer = document.querySelector('.elements');
@@ -83,9 +83,9 @@ function openProfileEditPopup () {
 
 /*Открытие формы добавления фото*/
 function openAddPhotoPopup () {
-	openPopup (PopupPlaceAdd);
-	InputPlaceName.value = '';
-	InputPlaceLink.value = '';
+	openPopup (popupPlaceAdd);
+	inputPlaceName.value = '';
+	inputPlaceLink.value = '';
 }
 
 /*Закрытие окна профиля*/
@@ -95,7 +95,7 @@ function closeProfilePopup() {
 	
 /*Закрытия окна нового места*/
 function closePlacePopup() {
-	closePopup (PopupPlaceAdd);
+	closePopup (popupPlaceAdd);
 }
 
 /*Закрытие окна большого изображения*/
@@ -144,8 +144,8 @@ function addCard(container, element) {
 /*Добавить карточку на страницу*/
 placeForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
-	const name = InputPlaceName.value;
-	const link = InputPlaceLink.value;
+	const name = inputPlaceName.value;
+	const link = inputPlaceLink.value;
 	addCard(cardContainer, create(name, link));
 	closePlacePopup ();
 });
