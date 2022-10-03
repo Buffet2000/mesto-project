@@ -6,7 +6,7 @@
   border: 2px solid white;
   background-color: black;
   border-radius: 2%;
-  background-image: url(../../../images/add-button.svg);
+  background-image: url(../../../src/images/add-button.svg);
   background-repeat: no-repeat;
   background-position: center;
   align-self: center;

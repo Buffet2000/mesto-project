@@ -4,7 +4,7 @@
 	position: absolute;
 	top: 20px;
 	right: 20px;
-  background-image: url(../../../images/delete.svg);
+  background-image: url(../../../src/images/delete.svg);
 	background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
