@@ -66,12 +66,12 @@
     
         <form class="popup__input-container" name="user" id="popup_profile" novalidate>
     
-          <input class="popup__inputs popup__input_name popup__input_name_error" name="name" type="text" placeholder="Имя" required>
-          <span class="popup__input_error" id="name-error">тут сообщение об ошибке</span>
-          <input class="popup__inputs popup__input_occupation popup__input_occupation_error" name="occupation" type="text" placeholder="О себе" required>
-          <span class="popup__input_error" id="occupation-error">тут сообщение об ошибке</span>
+          <input class="popup__inputs popup__input_name" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
+          <span class="popup__input_error"></span>
+          <input class="popup__inputs popup__input_occupation" name="occupation" type="text" placeholder="О себе" minlength="2" maxlength="200" required>
+          <span class="popup__input_error"></span>
     
-          <button class="popup__submit-button popup_submit-button_disabled" type="submit" aria-label="save" id="save_profile">Сохранить</button>
+          <button class="popup__submit-button" type="submit" aria-label="save" id="save_profile">Сохранить</button>
         
         </form>
     
@@ -89,12 +89,12 @@
     
         <h2 class="popup__heading">Новое место</h2>
     
-        <form class="popup__input-container" name="new_place" id="popup_place" novalidate>
+        <form class="popup__input-container" id="popup_place" name="new_place" novalidate>
     
-          <input class="popup__inputs popup__input_place-name" name="name" type="text" placeholder="Название" id="placeName_input" required>
-          <span class="popup__input_error placeName_input-error"></span>
-          <input class="popup__inputs popup__input_place-link" name="occupation" type="url" placeholder="Ссылка на картинку" id="placeImage_input" required>
-          <span class="popup__input_error placeImage_input-error"></span>
+          <input class="popup__inputs popup__input_place-name" name="name" type="text" placeholder="Название" required>
+          <span class="popup__input_error"></span>
+          <input class="popup__inputs popup__input_place-link" name="occupation" type="url" placeholder="Ссылка на картинку" required>
+          <span class="popup__input_error"></span>
     
           <button class="popup__submit-button" type="submit" aria-label="save" id="create">Создать</button>
         

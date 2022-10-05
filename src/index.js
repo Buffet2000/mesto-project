@@ -39,8 +39,8 @@ const profileForm = document.querySelector('#popup_profile');
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
 
-const InputProfileName = document.querySelector('.popup__input_type_name');
-const InputProfileOccupation = document.querySelector('.popup__input_type_occupation');
+const InputProfileName = document.querySelector('.popup__input_name');
+const InputProfileOccupation = document.querySelector('.popup__input_occupation');
 
 /*Открытое фото/кнопки*/
 const buttonBigImageClose = document.querySelector('#popup_image_close');
@@ -57,10 +57,12 @@ const placeForm = document.querySelector('#popup_place');
 
 const popupPlaceAdd = document.querySelector('#add_new_place');
 
+const popupInput = document.querySelector('.popup__inputs');
 const form = document.querySelector('.popup__input-container');
-const inputPlaceName = document.querySelector('.popup__input_type_place-name');
-const inputPlaceLink = document.querySelector('.popup__input_type_place-link');
+const inputPlaceName = document.querySelector('.popup__input_place-name');
+const inputPlaceLink = document.querySelector('.popup__input_place-link');
 /*const inputError = formElement.querySelector(`.${inputPopup.id}-error`);*/
+const page = document.querySelector('.page')
 
 /*Контейнет для всех фото-карточек*/
 const cardContainer = document.querySelector('.elements');
@@ -166,9 +168,36 @@ profileForm.addEventListener('submit', function (evt) {
 
 /*Сообщение ошибки*/
 
+const showInputError = (input) => {
+	input.classList.add('popup__input_error');
+}
+
+const hideInputError = (input) => {
+	input.classList.remove('popup__input_error');
+}
+
+/*Проверка валидации*/
+const checkInputValidity = (input) => {
+  if (!input.validity.valid) {
+    showInputError(input);
+  }
+  else {
+    hideInputError(input);
+  }
+};
+
+
 /*Слушатели для кнопок*/
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
 buttonProfileEdit.addEventListener('click', openProfileEditPopup);
 buttonProfileClose.addEventListener('click', closeProfilePopup);
 buttonNewPlaceClose.addEventListener('click', closePlacePopup);
 buttonBigImageClose.addEventListener('click', closeBigImagePopup);
+
+InputProfileName.addEventListener('input', function () {
+  checkInputValidity(InputProfileName);
+});
+InputProfileOccupation.addEventListener('input', function () {
+  checkInputValidity(InputProfileOccupation);
+});
+

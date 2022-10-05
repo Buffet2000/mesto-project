@@ -11,15 +11,16 @@
   padding: 0;
 }
 
-.popup__input::placeholder {
+.popup__inputs::placeholder {
   font-size: 14px;
   font-family: 'Inter';
   line-height: 20px;
   color: #00000051;
+  border: 0;
 }
 
 @media (max-width: 643px) {
-  .popup__input {
+  .popup__inputs {
     width: 238px;
   }
 }
