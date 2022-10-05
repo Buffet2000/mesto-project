@@ -57,7 +57,7 @@ const placeForm = document.querySelector('#popup_place');
 
 const popupPlaceAdd = document.querySelector('#add_new_place');
 
-const inputPopup = document.querySelector('.popup__input');
+const form = document.querySelector('.popup__input-container');
 const inputPlaceName = document.querySelector('.popup__input_type_place-name');
 const inputPlaceLink = document.querySelector('.popup__input_type_place-link');
 /*const inputError = formElement.querySelector(`.${inputPopup.id}-error`);*/
@@ -165,20 +165,6 @@ profileForm.addEventListener('submit', function (evt) {
 });
 
 /*Сообщение ошибки*/
-
-const showError = (input, errorMessage) => {
-  input.classList.add('form__input_type_error');
-  formError.textContent = errorMessage;
-  formError.classList.add('form__input-error_active');
-};
-
-function checkInputValidity() {
-	if (!inputPopup.validity.valid) {
-		
-	} else {
-		console.log(e)
-	}
-}
 
 /*Слушатели для кнопок*/
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
