@@ -52,6 +52,7 @@ const buttonAddCard = document.querySelector('.profile__button-add');
 const buttonNewPlaceClose = document.querySelector('#close_new_place');
 const placeForm = document.querySelector('#popup_place');
 const popupPlaceAdd = document.querySelector('#add_new_place');
+const submitButton = document.querySelector('.popup__submit-button');
 const submitButtonsAll = document.querySelectorAll('.popup__submit-button');
 
 
@@ -126,7 +127,7 @@ function create(name, link) {
 	cardImage.alt = name;
 
 	cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
-		evt.target.classList.f('element__like_active');
+		evt.target.classList.toggle('element__like_active');
 	});
 
 	const deleteButton = cardElement.querySelector('.element__delete');
@@ -163,8 +164,8 @@ placeForm.addEventListener('submit', function (evt) {
 profileForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
 	
-	profileName.textContent = inputProfileName.value;
-	profileOccupation.textContent = inputProfileOccupation.value;
+	profileName.textContent = InputProfileName.value;
+	profileOccupation.textContent = InputProfileOccupation.value;
 
 	closeProfilePopup();
 });
@@ -179,42 +180,40 @@ const hideInputError = (inputVal) => {
 	inputVal.classList.remove('popup__input_error');
 }
 
+/*Проверка валидации*/
 const profileFormElements = Array.from(profileForm.elements);
-const placeFormElements = Array.from(placeForm.elements);
-
-function validateForm (targetForm, targetFormElements) {
-	targetFormElements.forEach(element => {
-		const errorSpan = targetForm.querySelector(`#${element.name}_error`);
-		if (!element.validity.valid) {
-			showInputError(element);
-			errorSpan.textContent = element.validationMessage;
-		  }
-		  else {
-			hideInputError(element);
-			if (errorSpan) errorSpan.textContent = '';
-		  }
-	});
-
-	const submitButton = targetForm.parentElement.querySelector('button');
-	if (targetForm.checkValidity()) {
-		console.log('valid');
-		submitButton.classList.remove('popup_submit-button_disabled');
-	} else {
-		console.log('invlid');
-		submitButton.classList.add('popup_submit-button_disabled');
-	}
-}
 
 
 profileForm.addEventListener('input', function (evt) {
-	validateForm(profileForm, profileFormElements);
-});
+ profileFormElements.forEach(element => {
+  const errorSpan = element.nextSibling.nextSibling;
+  if (!element.validity.valid) {
+   showInputError(element);
+   errorSpan.textContent = element.validationMessage;
+    }
+    else {
+   hideInputError(element);
+   if (errorSpan) errorSpan.textContent = '';
+    }
+ });
 
-placeForm.addEventListener('input', function (evt) {
-	validateForm(placeForm, placeFormElements);
-});
 
-//////
+const checkInputValidity = (valInput, errorName) => {
+  if (!valInput.validity.valid) {
+    showInputError(valInput);
+		errorName.textContent = valInput.validationMessage;
+  }
+  else {
+    hideInputError(valInput);
+		errorName.textContent = '';
+  }
+}
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  }); 
+}
 
 const allSubmit = Array.from(submitButtonsAll);
 allSubmit.forEach((item) => {
@@ -227,3 +226,20 @@ buttonProfileEdit.addEventListener('click', openProfileEditPopup);
 buttonProfileClose.addEventListener('click', closeProfilePopup);
 buttonNewPlaceClose.addEventListener('click', closePlacePopup);
 buttonBigImageClose.addEventListener('click', closeBigImagePopup);
+
+/*Валидация форм*/
+inputProfileName.addEventListener('input', function () {
+checkInputValidity(inputProfileName, nameError);
+});
+
+inputProfileOccupation.addEventListener('input', function () {
+  checkInputValidity(inputProfileOccupation, occupationError);
+});
+
+inputPlaceName.addEventListener('input', function () {
+	checkInputValidity(inputPlaceName, placeNameError);
+});
+
+inputPlaceLink.addEventListener('input', function () {
+	checkInputValidity(inputPlaceLink, placeLinkError);
+}):
