@@ -39,9 +39,6 @@ const profileForm = document.querySelector('#popup_profile');
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
 
-const InputProfileName = document.querySelector('.popup__input_name');
-const InputProfileOccupation = document.querySelector('.popup__input_occupation');
-
 /*Открытое фото/кнопки*/
 const buttonBigImageClose = document.querySelector('#popup_image_close');
 
@@ -54,15 +51,22 @@ const bigImageDescription = document.querySelector('.popup__description');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const buttonNewPlaceClose = document.querySelector('#close_new_place');
 const placeForm = document.querySelector('#popup_place');
-
 const popupPlaceAdd = document.querySelector('#add_new_place');
+const submitButton = document.querySelector('.popup__submit-button');
+const submitButtonsAll = document.querySelectorAll('.popup__submit-button');
 
-const popupInput = document.querySelector('.popup__inputs');
-const form = document.querySelector('.popup__input-container');
+
+/*Инпуты*/
 const inputPlaceName = document.querySelector('.popup__input_place-name');
 const inputPlaceLink = document.querySelector('.popup__input_place-link');
-/*const inputError = formElement.querySelector(`.${inputPopup.id}-error`);*/
-const page = document.querySelector('.page')
+const inputProfileName = document.querySelector('.popup__input_name');
+const inputProfileOccupation = document.querySelector('.popup__input_occupation');
+
+/*Сообщения ошибок*/
+const nameError = document.querySelector('#name_error');
+const occupationError = document.querySelector('#occupation_error')
+const placeNameError = document.querySelector('#place-name_error');
+const placeLinkError = document.querySelector('#place-link_error');
 
 /*Контейнет для всех фото-карточек*/
 const cardContainer = document.querySelector('.elements');
@@ -82,8 +86,8 @@ function closePopup (popupList) {
 /*Открытие формы профиля*/
 function openProfileEditPopup () {
 	openPopup (popupProfileEdit);
-	InputProfileName.value = profileName.textContent;
-	InputProfileOccupation.value = profileOccupation.textContent;
+	inputProfileName.value = profileName.textContent;
+	inputProfileOccupation.value = profileOccupation.textContent;
 }
 
 /*Открытие формы добавления фото*/
@@ -165,27 +169,56 @@ profileForm.addEventListener('submit', function (evt) {
 
 	closeProfilePopup();
 });
-
+/*ТУТ ВСЁ ПОКА В РАЗРАБОТКЕ! :) */
 /*Сообщение ошибки*/
 
-const showInputError = (input) => {
-	input.classList.add('popup__input_error');
+const showInputError = (inputVal) => {
+	inputVal.classList.add('popup__input_error');
 }
 
-const hideInputError = (input) => {
-	input.classList.remove('popup__input_error');
+const hideInputError = (inputVal) => {
+	inputVal.classList.remove('popup__input_error');
 }
 
 /*Проверка валидации*/
-const checkInputValidity = (input) => {
-  if (!input.validity.valid) {
-    showInputError(input);
+const checkInputValidity = (valInput, errorName) => {
+  if (!valInput.validity.valid) {
+    showInputError(valInput);
+		errorName.textContent = valInput.validationMessage;
+		submitButton.classList.add('popup_submit-button_disabled');
   }
   else {
-    hideInputError(input);
+    hideInputError(valInput);
+		errorName.textContent = '';
+		submitButton.classList.remove('popup_submit-button_disabled');
   }
-};
+}
 
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  }); 
+}
+
+/*вкл/выкл submit*/
+/*const toggleButtonState = (inputList, submitButton) => {
+	const allSubmit = Array.from(submitButtonsAll);
+	for (let i = 0; i < allSubmit.length; i++) {
+		const copyItems = copyItems.push(allSubmit[i]);
+		
+  if (hasInvalidInput(inputList)) {
+    allSubmit.forEach(item => item.classList.add('popup_submit-button_disabled'));
+	}
+	const allSubmit = Array.from(submitButtonsAll);
+  if (hasInvalidInput(inputList)) {
+    allSubmit.forEach(item => item.classList.add('popup_submit-button_disabled'));
+	}
+}*/
+
+const allSubmit = Array.from(submitButtonsAll);
+allSubmit.forEach((item) => {
+	item.classList.add('popup_submit-button_disabled');
+});
 
 /*Слушатели для кнопок*/
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
@@ -194,10 +227,23 @@ buttonProfileClose.addEventListener('click', closeProfilePopup);
 buttonNewPlaceClose.addEventListener('click', closePlacePopup);
 buttonBigImageClose.addEventListener('click', closeBigImagePopup);
 
-InputProfileName.addEventListener('input', function () {
-  checkInputValidity(InputProfileName);
-});
-InputProfileOccupation.addEventListener('input', function () {
-  checkInputValidity(InputProfileOccupation);
+/*Валидация форм*/
+inputProfileName.addEventListener('input', function () {
+  checkInputValidity(inputProfileName, nameError);
+	toggleButtonState();
 });
 
+inputProfileOccupation.addEventListener('input', function () {
+  checkInputValidity(inputProfileOccupation, occupationError);
+	toggleButtonState();
+});
+
+inputPlaceName.addEventListener('input', function () {
+	checkInputValidity(inputPlaceName, placeNameError);
+	toggleButtonState();
+});
+
+inputPlaceLink.addEventListener('input', function () {
+	checkInputValidity(inputPlaceLink, placeLinkError);
+	toggleButtonState();
+});

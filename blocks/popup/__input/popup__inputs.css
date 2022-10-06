@@ -10,6 +10,9 @@
   background-color: transparent;
   padding: 0;
 }
+.popup__inputs:focus {
+  outline: none;
+}
 
 .popup__inputs::placeholder {
   font-size: 14px;
