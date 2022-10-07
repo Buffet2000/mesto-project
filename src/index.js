@@ -52,20 +52,12 @@ const buttonAddCard = document.querySelector('.profile__button-add');
 const buttonNewPlaceClose = document.querySelector('#close_new_place');
 const placeForm = document.querySelector('#popup_place');
 const popupPlaceAdd = document.querySelector('#add_new_place');
-const submitButtonsAll = document.querySelectorAll('.popup__submit-button');
-
 
 /*Инпуты*/
 const inputPlaceName = document.querySelector('.popup__input_place-name');
 const inputPlaceLink = document.querySelector('.popup__input_place-link');
 const inputProfileName = document.querySelector('.popup__input_name');
 const inputProfileOccupation = document.querySelector('.popup__input_occupation');
-
-/*Сообщения ошибок*/
-const nameError = document.querySelector('#name_error');
-const occupationError = document.querySelector('#occupation_error')
-const placeNameError = document.querySelector('#place-name_error');
-const placeLinkError = document.querySelector('#place-link_error');
 
 /*Контейнет для всех фото-карточек*/
 const cardContainer = document.querySelector('.elements');
@@ -126,7 +118,7 @@ function create(name, link) {
 	cardImage.alt = name;
 
 	cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
-		evt.target.classList.f('element__like_active');
+		evt.target.classList.toggle('element__like_active');
 	});
 
 	const deleteButton = cardElement.querySelector('.element__delete');
@@ -168,7 +160,7 @@ profileForm.addEventListener('submit', function (evt) {
 
 	closeProfilePopup();
 });
-/*ТУТ ВСЁ ПОКА В РАЗРАБОТКЕ! :) */
+
 /*Сообщение ошибки*/
 
 const showInputError = (inputVal) => {
@@ -212,13 +204,6 @@ profileForm.addEventListener('input', function (evt) {
 
 placeForm.addEventListener('input', function (evt) {
 	validateForm(placeForm, placeFormElements);
-});
-
-//////
-
-const allSubmit = Array.from(submitButtonsAll);
-allSubmit.forEach((item) => {
-	item.classList.add('popup_submit-button_disabled');
 });
 
 /*Слушатели для кнопок*/
