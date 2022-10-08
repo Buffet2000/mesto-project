@@ -64,10 +64,11 @@ const cardContainer = document.querySelector('.elements');
 
 /*Список всех окон (popup)*/
 const popupList = document.querySelectorAll('.popup');
+const popupContainer = document.querySelector('.popup__container');
 
 /*Открывание/закрывание окон*/
-function openPopup (popupList) {
-	popupList.classList.add('popup_opened');
+function openPopup (popup) {
+	popup.classList.add('popup_opened');
 }
 
 function closePopup (popupList) {
@@ -108,10 +109,11 @@ initialCards.forEach((elem) => {
 	addCard(cardContainer, create(elem.name, elem.link))
 });
 
-/*Создание новой карточки (включая все кнопки)*/
+/*Создание новой карточки (включая все кнопки и лайки)*/
 function create(name, link) {
 	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 	const cardImage = cardElement.querySelector('.element__image');
+	const cardLikes = document.querySelectorAll('.element__like');
 
 	cardElement.querySelector('.element__title').textContent = name;
   cardImage.src = link;
@@ -180,11 +182,10 @@ function validateForm (targetForm, targetFormElements) {
 		if (!element.validity.valid) {
 			showInputError(element);
 			errorSpan.textContent = element.validationMessage;
-		  }
-		  else {
+		} else {
 			hideInputError(element);
 			if (errorSpan) errorSpan.textContent = '';
-		  }
+		}
 	});
 
 	const submitButton = targetForm.parentElement.querySelector('button');
@@ -212,3 +213,23 @@ buttonProfileEdit.addEventListener('click', openProfileEditPopup);
 buttonProfileClose.addEventListener('click', closeProfilePopup);
 buttonNewPlaceClose.addEventListener('click', closePlacePopup);
 buttonBigImageClose.addEventListener('click', closeBigImagePopup);
+
+document.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    closeProfilePopup ();
+		closePlacePopup ();
+		closeBigImagePopup ();
+	}
+});
+
+document.addEventListener('click', function (evt) {
+	if (evt.target.contains(popupProfileEdit)) {
+    closeProfilePopup ();
+	}
+	if (evt.target.contains(popupBigImage)) {
+		closeBigImagePopup ();
+	}
+	if (evt.target.contains(popupPlaceAdd)) {
+		closePlacePopup ();
+	}
+});

@@ -12,7 +12,7 @@
 
   <body class="root">
 
-    <div class="page">
+    <div class="page" id="page">
 
       <header class="header">
 
@@ -91,7 +91,7 @@
     
         <form class="popup__input-container" id="popup_place" name="new_place" novalidate>
     
-          <input class="popup__inputs popup__input_place-name" name="place-name" type="text" placeholder="Название" required>
+          <input class="popup__inputs popup__input_place-name" name="place-name" type="text" placeholder="Название" minlength="2" maxlength="30" required>
           <span class="popup__input_error-message" id="place-name_error"></span>
           <input class="popup__inputs popup__input_place-link" name="place-link" type="url" placeholder="Ссылка на картинку" required>
           <span class="popup__input_error-message" id="place-link_error"></span>
@@ -111,7 +111,7 @@
       <div class="popup__image-container">
 
         <button class="popup__close-button" type="button" aria-label="закрыть" id="popup_image_close"></button>
-        <img src="" alt="" class="popup__big-image">
+        <img src="" alt="большая_картинка" class="popup__big-image">
         <p class="popup__description"></p>
 
       </div>
