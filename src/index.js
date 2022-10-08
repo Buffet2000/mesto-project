@@ -216,10 +216,16 @@ buttonBigImageClose.addEventListener('click', closeBigImagePopup);
 
 document.addEventListener('keydown', function (evt) {
   if (evt.key === 'Escape') {
-    closeProfilePopup ();
-		closePlacePopup ();
-		closeBigImagePopup ();
-	}
+		if (popupProfileEdit.classList.contains('popup_opened')) {
+			closeProfilePopup ();
+		}
+		if (popupBigImage.classList.contains('popup_opened')) {
+			closeBigImagePopup ();
+		}
+		if (popupPlaceAdd.classList.contains('popup_opened')) {
+			closePlacePopup ();
+		}
+  }
 });
 
 document.addEventListener('click', function (evt) {
@@ -233,3 +239,4 @@ document.addEventListener('click', function (evt) {
 		closePlacePopup ();
 	}
 });
+
