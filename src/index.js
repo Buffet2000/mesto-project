@@ -246,5 +246,4 @@ document.addEventListener('mousedown', function (evt) {
 
 function checkInput(input) {
 	input.value = input.value.replace(/[^A-Za-zА-Яа-яЁё\-\s]/g, '');
-	
 };
