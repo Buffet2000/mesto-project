@@ -182,6 +182,10 @@ function validateForm (targetForm, targetFormElements) {
 		if (!element.validity.valid) {
 			showInputError(element);
 			errorSpan.textContent = element.validationMessage;
+		if (checkInput(inputPlaceName)) {
+			showInputError(element);
+			errorSpan.textContent = element.validationMessage;
+		}
 		} else {
 			hideInputError(element);
 			if (errorSpan) errorSpan.textContent = '';
@@ -240,3 +244,7 @@ document.addEventListener('mousedown', function (evt) {
 	}
 });
 
+function checkInput(input) {
+	input.value = input.value.replace(/[^A-Za-zА-Яа-яЁё\-\s]/g, '');
+	
+};
