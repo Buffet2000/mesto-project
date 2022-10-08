@@ -228,7 +228,7 @@ document.addEventListener('keydown', function (evt) {
   }
 });
 
-document.addEventListener('click', function (evt) {
+document.addEventListener('mousedown', function (evt) {
 	if (evt.target.contains(popupProfileEdit)) {
     closeProfilePopup ();
 	}
