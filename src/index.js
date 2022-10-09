@@ -182,12 +182,12 @@ function validateForm (targetForm, targetFormElements) {
 		if (!element.validity.valid) {
 			showInputError(element);
 			errorSpan.textContent = element.validationMessage;
-		if (checkInput(inputPlaceName)) {
+		if (checkInputPlace(inputPlaceName)) {
 			showInputError(element);
 			errorSpan.textContent = element.validationMessage;
 		}
 		if (element === inputPlaceName) {
-			errorSpan.textContent = `${element.validationMessage} Текст должен быть не короче 2 симв. Можно ввести только буквы, тире и пробелы.`;
+			errorSpan.textContent = `${element.validationMessage} Текст должен быть не короче 2 симв. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
 		}
 		} else {
 			hideInputError(element);
@@ -250,6 +250,6 @@ document.addEventListener('mousedown', function (evt) {
 	}
 });
 
-function checkInput(input) {
+function checkInputPlace(input) {
 	input.value = input.value.replace(/[^A-Za-zА-Яа-яЁё\-\s]/g, '');
 };
