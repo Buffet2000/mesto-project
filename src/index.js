@@ -186,6 +186,9 @@ function validateForm (targetForm, targetFormElements) {
 			showInputError(element);
 			errorSpan.textContent = element.validationMessage;
 		}
+		if (element === inputPlaceName) {
+			errorSpan.textContent = `${element.validationMessage} Текст должен быть не короче 2 симв. Можно ввести только буквы, тире и пробелы.`;
+		}
 		} else {
 			hideInputError(element);
 			if (errorSpan) errorSpan.textContent = '';
