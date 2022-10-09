@@ -195,10 +195,10 @@ function validateForm (targetForm, targetFormElements) {
 	const submitButton = targetForm.parentElement.querySelector('button');
 	if (targetForm.checkValidity()) {
 		console.log('valid');
-		submitButton.classList.remove('popup_submit-button_disabled');
+		submitButton.classList.remove('popup__submit-button_disabled');
 	} else {
 		console.log('invlid');
-		submitButton.classList.add('popup_submit-button_disabled');
+		submitButton.classList.add('popup__submit-button_disabled');
 	}
 }
 
@@ -230,6 +230,9 @@ document.addEventListener('keydown', function (evt) {
 			closePlacePopup ();
 		}
   }
+	if(evt.keyCode === 13) {
+		evt.preventDefault();
+ 	}
 });
 
 document.addEventListener('mousedown', function (evt) {
