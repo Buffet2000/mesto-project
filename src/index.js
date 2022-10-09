@@ -1,30 +1,5 @@
 import './index.css';
-const initialCards = [
-	{
-		name: 'Архыз',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-	},
-	{
-		name: 'Челябинская область',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-	},
-	{
-		name: 'Иваново',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-	},
-	{
-		name: 'Камчатка',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-	},
-	{
-		name: 'Холмогорский район',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-	},
-	{
-		name: 'Байкал',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-	}
-	];
+import { initialCards } from './components/card.js';
 
 /*Переменная для template*/
 const cardTemplate = document.querySelector('#element-template').content;
@@ -221,6 +196,7 @@ buttonProfileClose.addEventListener('click', closeProfilePopup);
 buttonNewPlaceClose.addEventListener('click', closePlacePopup);
 buttonBigImageClose.addEventListener('click', closeBigImagePopup);
 
+/*Закрытие по клавише esc*/
 document.addEventListener('keydown', function (evt) {
   if (evt.key === 'Escape') {
 		if (popupProfileEdit.classList.contains('popup_opened')) {
@@ -238,6 +214,7 @@ document.addEventListener('keydown', function (evt) {
  	}
 });
 
+/*Закрытие форм по клику мышки*/
 document.addEventListener('mousedown', function (evt) {
 	if (evt.target.contains(popupProfileEdit)) {
     closeProfilePopup ();
