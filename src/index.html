@@ -67,11 +67,11 @@
         <form class="popup__input-container" name="user" id="popup_profile" novalidate>
     
           <input class="popup__inputs popup__input_name" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
-          <span class="popup__input_error-message" id="name_error"></span>
+          <span class="popup__input_error-message" id="name_error" required></span>
           <input class="popup__inputs popup__input_occupation" name="occupation" type="text" placeholder="О себе" minlength="2" maxlength="200" required>
           <span class="popup__input_error-message" id="occupation_error"></span>
     
-          <button class="popup__submit-button" type="submit" aria-label="save" id="save_profile">Сохранить</button>
+          <button class="popup__submit-button" type="submit" aria-label="save" id="save_profile" disabled="disabled">Сохранить</button>
         
         </form>
     
@@ -96,7 +96,7 @@
           <input class="popup__inputs popup__input_place-link" name="place-link" type="url" placeholder="Ссылка на картинку" minlength="2" required>
           <span class="popup__input_error-message" id="place-link_error"></span>
     
-          <button class="popup__submit-button popup__submit-button_disabled" type="submit" aria-label="save" id="create">Создать</button>
+          <button class="popup__submit-button popup__submit-button_disabled" type="submit" aria-label="save" id="create" disabled="disabled">Создать</button>
         
         </form>
     
