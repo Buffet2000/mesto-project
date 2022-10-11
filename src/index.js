@@ -169,7 +169,7 @@ function validateForm (targetForm, targetFormElements) {
 				errorSpan.textContent = element.validationMessage;
 			}
 			if (element === inputPlaceName) {
-				errorSpan.textContent = `${element.	validationMessage} Текст должен быть не короче 2 симв. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
+				errorSpan.textContent = `${element.validationMessage} Текст должен быть не короче 2 симв. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
 			}
 		}
 		else {
