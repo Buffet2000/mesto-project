@@ -174,7 +174,7 @@ function validateForm (targetForm, targetFormElements) {
 		}
 		else {
 			hideInputError(element);
-			if (errorSpan) errorSpan.textContent = '';
+		if (errorSpan) errorSpan.textContent = '';
 		}
 	});
 
