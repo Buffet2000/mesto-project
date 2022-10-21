@@ -1,5 +1,6 @@
 import './index.css';
 import { initialCards } from './components/card.js';
+import { enableValidation } from './components/validate.js';
 
 /*Переменная для template*/
 const cardTemplate = document.querySelector('#element-template').content;
@@ -26,6 +27,7 @@ const inputPlaceName = document.querySelector('.popup__input_place-name');
 const inputPlaceLink = document.querySelector('.popup__input_place-link');
 const inputProfileName = document.querySelector('.popup__input_name');
 const inputProfileOccupation = document.querySelector('.popup__input_occupation');
+const spanError = document.querySelector('.popup__input_error-message');
 
 /*Контейнет для всех фото-карточек*/
 const cardContainer = document.querySelector('.elements');
@@ -54,6 +56,7 @@ function openProfileEditPopup () {
 }
 
 /*Открытие формы добавления фото*/
+
 function openAddPhotoPopup () {
 	openPopup (popupPlaceAdd);
 	inputPlaceName.value = '';
@@ -137,43 +140,42 @@ profileForm.addEventListener('submit', function (evt) {
 });
 
 /*Сообщение ошибки*/
-const showInputError = (inputVal) => {
-	inputVal.classList.add('popup__input_error');
+/*const showInputError = (inputSelector) => {
+	inputSelector.classList.add('popup__input_error');
 }
 
-const hideInputError = (inputVal) => {
-	inputVal.classList.remove('popup__input_error');
-}
-
-const profileFormElements = Array.from(profileForm.elements);
-const placeFormElements = Array.from(placeForm.elements);
+const hideInputError = (inputSelector) => {
+	inputSelector.classList.remove('popup__input_error');
+}*/
 
 /*Валидауия инпутов*/
+const inputList = Array.from(document.querySelectorAll('.popup__inputs'));
+
 profileForm.addEventListener('input', function (evt) {
-	validateForm(profileForm, profileFormElements);
+	enableValidation(profileForm, inputList);
 });
 
 placeForm.addEventListener('input', function (evt) {
-	validateForm(placeForm, placeFormElements);
+	enableValidation(placeForm, inputList);
 });
 
 /*Сама функция валидации*/
-function validateForm (targetForm, targetFormElements) {
-	targetFormElements.forEach(element => {
-		const errorSpan = targetForm.querySelector(`#${element.name}_error`);
-		if (!element.validity.valid) {
-			showInputError(element);
-			errorSpan.textContent = element.validationMessage;
+/*function enableValidation (targetForm, targetFormElements) {
+	targetFormElements.forEach((inputSelector) => {
+		const errorSpan = document.querySelector(`#${inputSelector.name}_error`);
+		if (!inputSelector.validity.valid) {
+			showInputError(inputSelector);
+			errorSpan.textContent = inputSelector.validationMessage;
 			if (checkInputPlace(inputPlaceName)) {
-				showInputError(element);
-				errorSpan.textContent = element.validationMessage;
+				showInputError(inputSelector);
+				errorSpan.textContent = inputSelector.validationMessage;
 			}
-			if (element === inputPlaceName) {
-				errorSpan.textContent = `${element.validationMessage} Текст должен быть не короче 2 симв. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
+			if (inputSelector === inputPlaceName) {
+				errorSpan.textContent = `${inputSelector.validationMessage} Текст должен быть не короче 2 симв. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
 			}
 		}
 		else {
-			hideInputError(element);
+			hideInputError(inputSelector);
 		if (errorSpan) errorSpan.textContent = '';
 		}
 	});
@@ -188,13 +190,13 @@ function validateForm (targetForm, targetFormElements) {
 		submitButton.classList.add('popup__submit-button_disabled')
 		submitButton.disabled = true;
 	}
-}
+}*/
 
 /*Слушатели для кнопок*/
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
 buttonProfileEdit.addEventListener('click', openProfileEditPopup);
 
 /*Проверка инпута названия новой карточки*/
-function checkInputPlace(input) {
+/*function checkInputPlace(input) {
 	input.value = input.value.replace(/[^A-Za-zА-Яа-яЁё\-\s]/g, '');
-};
+};*/
