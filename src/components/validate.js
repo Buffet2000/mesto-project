@@ -1,36 +1,36 @@
 const inputPlaceName = document.querySelector('.popup__input_place-name');
 
 /*Сообщение ошибки*/
-const showInputError = (inputSelector) => {
-	inputSelector.classList.add('popup__input_error');
+const showInputError = (input) => {
+	input.classList.add('popup__input_error');
 }
 
-const hideInputError = (inputSelector) => {
-	inputSelector.classList.remove('popup__input_error');
+const hideInputError = (input) => {
+	input.classList.remove('popup__input_error');
 }
 
 /*Проверка инпута названия новой карточки*/
-function checkInputPlace(inputSelector) {
-	inputSelector.value = inputSelector.value.replace(/[^A-Za-zА-Яа-яЁё\-\s]/g, '');
+function checkInputPlace(input) {
+	input.value = input.value.replace(/[^A-Za-zА-Яа-яЁё\-\s]/g, '');
 }
 
 /*Сама функция валидации*/
-export function enableValidation (targetForm, targetFormElements) {
-	targetFormElements.forEach((inputSelector) => {
-		const errorSpan = document.querySelector(`#${inputSelector.name}_error`);
-		if (!inputSelector.validity.valid) {
-			showInputError(inputSelector);
-			errorSpan.textContent = inputSelector.validationMessage;
+export function enableValidation (targetForm, inputSelector) {
+	inputSelector.forEach(element => {
+		const errorSpan = targetForm.querySelector(`#${element.name}_error`);
+		if (!element.validity.valid) {
+			showInputError(element);
+			errorSpan.textContent = element.validationMessage;
 			if (checkInputPlace(inputPlaceName)) {
-				showInputError(inputSelector);
-				errorSpan.textContent = inputSelector.validationMessage;
+				showInputError(element);
+				errorSpan.textContent = element.validationMessage;
 			}
-			if (inputSelector === inputPlaceName) {
-				errorSpan.textContent = `${inputSelector.validationMessage} Текст должен быть не короче 2 симв. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
+			if (element === inputPlaceName) {
+				errorSpan.textContent = `${element.validationMessage} Текст должен быть не короче 2 симв. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
 			}
 		}
 		else {
-			hideInputError(inputSelector);
+			hideInputError(element);
 		if (errorSpan) errorSpan.textContent = '';
 		}
 	});

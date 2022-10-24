@@ -27,7 +27,6 @@ const inputPlaceName = document.querySelector('.popup__input_place-name');
 const inputPlaceLink = document.querySelector('.popup__input_place-link');
 const inputProfileName = document.querySelector('.popup__input_name');
 const inputProfileOccupation = document.querySelector('.popup__input_occupation');
-const spanError = document.querySelector('.popup__input_error-message');
 
 /*Контейнет для всех фото-карточек*/
 const cardContainer = document.querySelector('.elements');
@@ -56,7 +55,6 @@ function openProfileEditPopup () {
 }
 
 /*Открытие формы добавления фото*/
-
 function openAddPhotoPopup () {
 	openPopup (popupPlaceAdd);
 	inputPlaceName.value = '';
@@ -139,64 +137,18 @@ profileForm.addEventListener('submit', function (evt) {
 	closePopup (popupProfileEdit);
 });
 
-/*Сообщение ошибки*/
-/*const showInputError = (inputSelector) => {
-	inputSelector.classList.add('popup__input_error');
-}
-
-const hideInputError = (inputSelector) => {
-	inputSelector.classList.remove('popup__input_error');
-}*/
-
-/*Валидауия инпутов*/
-const inputList = Array.from(document.querySelectorAll('.popup__inputs'));
+/*Слушатели на input*/
+const profileFormElements = Array.from(profileForm.elements);
+const placeFormElements = Array.from(placeForm.elements);
 
 profileForm.addEventListener('input', function (evt) {
-	enableValidation(profileForm, inputList);
+	enableValidation(profileForm, profileFormElements);
 });
 
 placeForm.addEventListener('input', function (evt) {
-	enableValidation(placeForm, inputList);
+	enableValidation(placeForm, placeFormElements);
 });
-
-/*Сама функция валидации*/
-/*function enableValidation (targetForm, targetFormElements) {
-	targetFormElements.forEach((inputSelector) => {
-		const errorSpan = document.querySelector(`#${inputSelector.name}_error`);
-		if (!inputSelector.validity.valid) {
-			showInputError(inputSelector);
-			errorSpan.textContent = inputSelector.validationMessage;
-			if (checkInputPlace(inputPlaceName)) {
-				showInputError(inputSelector);
-				errorSpan.textContent = inputSelector.validationMessage;
-			}
-			if (inputSelector === inputPlaceName) {
-				errorSpan.textContent = `${inputSelector.validationMessage} Текст должен быть не короче 2 симв. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
-			}
-		}
-		else {
-			hideInputError(inputSelector);
-		if (errorSpan) errorSpan.textContent = '';
-		}
-	});
-
-	const submitButton = targetForm.parentElement.querySelector('button');
-	if (targetForm.checkValidity()) {
-		console.log('valid');
-		submitButton.classList.remove('popup__submit-button_disabled')
-		submitButton.disabled = false;
-	} else {
-		console.log('invlid');
-		submitButton.classList.add('popup__submit-button_disabled')
-		submitButton.disabled = true;
-	}
-}*/
 
 /*Слушатели для кнопок*/
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
 buttonProfileEdit.addEventListener('click', openProfileEditPopup);
-
-/*Проверка инпута названия новой карточки*/
-/*function checkInputPlace(input) {
-	input.value = input.value.replace(/[^A-Za-zА-Яа-яЁё\-\s]/g, '');
-};*/
