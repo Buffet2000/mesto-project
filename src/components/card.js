@@ -24,3 +24,8 @@ export const initialCards = [
 		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
 	}
 	];
+
+/*Добавление карточки*/
+export function addCard(container, element) {
+	container.prepend(element);
+}

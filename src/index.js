@@ -1,48 +1,32 @@
 import './index.css';
-import { initialCards } from './components/card.js';
+import { initialCards, addCard } from './components/card.js';
 import { enableValidation } from './components/validate.js';
-
+import { openPopup, closePopup } from './components/modal.js';
 /*Переменная для template*/
 const cardTemplate = document.querySelector('#element-template').content;
-
 /*Кнопки/окна профиля*/
 const buttonProfileEdit = document.querySelector('.profile__button-edit');
 const popupProfileEdit = document.querySelector('#edit_profile');
 const profileForm = document.querySelector('#popup_profile');
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
-
 /*Открытое фото/кнопки*/
 const popupBigImage = document.querySelector('#big_image');
 const bigImageImage = document.querySelector('.popup__big-image');
 const bigImageDescription = document.querySelector('.popup__description');
-
 /*Кнопки/окна фото*/
 const buttonAddCard = document.querySelector('.profile__button-add');
 const placeForm = document.querySelector('#popup_place');
 const popupPlaceAdd = document.querySelector('#add_new_place');
-
 /*Инпуты*/
 const inputPlaceName = document.querySelector('.popup__input_place-name');
 const inputPlaceLink = document.querySelector('.popup__input_place-link');
 const inputProfileName = document.querySelector('.popup__input_name');
 const inputProfileOccupation = document.querySelector('.popup__input_occupation');
-
 /*Контейнет для всех фото-карточек*/
 const cardContainer = document.querySelector('.elements');
-
 /*Список всех окон (popup)*/
 const popupList = document.querySelectorAll('.popup');
-
-/*Открывание/закрывание окон*/
-function openPopup (popup) {
-	popup.classList.add('popup_opened');
-	document.addEventListener('keydown', closeByEscape);
-}
-function closePopup (popup) {
-	popup.classList.remove('popup_opened');
-	document.removeEventListener('keydown', closeByEscape);
-}
 
 /*Открытие формы профиля*/
 function openProfileEditPopup () {
@@ -76,14 +60,6 @@ popupList.forEach((popup) => {
   });
 });
 
-/*Закрытие по esc*/
-function closeByEscape (evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup (openedPopup);
-  }
-}
-
 /*Создание готовых карточек "из коробки"*/
 initialCards.forEach((elem) => {
 	addCard(cardContainer, create(elem.name, elem.link))
@@ -116,11 +92,7 @@ function create(name, link) {
 	return cardElement;
 }
 
-function addCard(container, element) {
-	container.prepend(element);
-}
-
-/*Добавить карточку на страницу*/
+/*Слушатель с добавлением карточки на страницу*/
 placeForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
 	const name = inputPlaceName.value;
@@ -137,7 +109,7 @@ profileForm.addEventListener('submit', function (evt) {
 	closePopup (popupProfileEdit);
 });
 
-/*Слушатели на input*/
+/*Слушатели с валидацией на input*/
 const profileFormElements = Array.from(profileForm.elements);
 const placeFormElements = Array.from(placeForm.elements);
 
