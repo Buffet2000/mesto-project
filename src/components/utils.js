@@ -19,5 +19,11 @@ const inputProfileOccupation = document.querySelector('.popup__input_occupation'
 const popupList = document.querySelectorAll('.popup');
 /*Контейнет для всех фото-карточек*/
 const cardContainer = document.querySelector('.elements');
+/*Переменная для template*/
+const cardTemplate = document.querySelector('#element-template').content;
+/*Открытое фото/кнопки*/
+const popupBigImage = document.querySelector('#big_image');
+const bigImageImage = document.querySelector('.popup__big-image');
+const bigImageDescription = document.querySelector('.popup__description');
 
-export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList }
+export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription }

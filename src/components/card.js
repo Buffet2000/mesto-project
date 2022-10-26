@@ -1,10 +1,5 @@
 import { openPopup } from "./modal.js";
-/*Переменная для template*/
-const cardTemplate = document.querySelector('#element-template').content;
-/*Открытое фото/кнопки*/
-const popupBigImage = document.querySelector('#big_image');
-const bigImageImage = document.querySelector('.popup__big-image');
-const bigImageDescription = document.querySelector('.popup__description');
+import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription } from './utils.js';
 
 const initialCards = [
 	{
