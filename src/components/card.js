@@ -1,4 +1,12 @@
-export const initialCards = [
+import { openPopup } from "./modal.js";
+/*Переменная для template*/
+const cardTemplate = document.querySelector('#element-template').content;
+/*Открытое фото/кнопки*/
+const popupBigImage = document.querySelector('#big_image');
+const bigImageImage = document.querySelector('.popup__big-image');
+const bigImageDescription = document.querySelector('.popup__description');
+
+const initialCards = [
 	{
 		name: 'Архыз',
 		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -26,6 +34,35 @@ export const initialCards = [
 	];
 
 /*Добавление карточки*/
-export function addCard(container, element) {
+function addCard(container, element) {
 	container.prepend(element);
 }
+
+/*Создание новой карточки (включая все кнопки и лайки)*/
+function create(name, link) {
+	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+	const cardImage = cardElement.querySelector('.element__image');
+
+	cardElement.querySelector('.element__title').textContent = name;
+  cardImage.src = link;
+	cardImage.alt = name;
+
+	cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
+		evt.target.classList.toggle('element__like_active');
+	});
+
+	const deleteButton = cardElement.querySelector('.element__delete');
+	deleteButton.addEventListener('click', function () {
+		cardElement.remove();
+	});
+
+	cardImage.addEventListener('click', function () {
+		openPopup (popupBigImage);
+		bigImageImage.src = link;
+		bigImageImage.alt = name;
+		bigImageDescription.textContent = name;
+	});
+	return cardElement;
+}
+
+export { addCard, create, initialCards }

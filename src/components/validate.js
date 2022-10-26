@@ -1,48 +1,74 @@
-const inputPlaceName = document.querySelector('.popup__input_place-name');
-
-/*Сообщение ошибки*/
-const showInputError = (input) => {
-	input.classList.add('popup__input_error');
+const validationSettings = {
+	formSelector: '.popup__input-container',
+  inputSelector: '.popup__inputs',
+	inputPlaceName: '.popup__input_place-name',
+  submitButton: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorMessage: '.popup__input_error-message'
 }
 
-const hideInputError = (input) => {
-	input.classList.remove('popup__input_error');
+/*Инпуты не прошедшие валидацию*/
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
 }
-
-/*Проверка инпута названия новой карточки*/
-function checkInputPlace(input) {
-	input.value = input.value.replace(/[^A-Za-zА-Яа-яЁё\-\s]/g, '');
-}
-
-/*Сама функция валидации*/
-export function enableValidation (targetForm, inputSelector) {
-	inputSelector.forEach(element => {
-		const errorSpan = targetForm.querySelector(`#${element.name}_error`);
-		if (!element.validity.valid) {
-			showInputError(element);
-			errorSpan.textContent = element.validationMessage;
-			if (checkInputPlace(inputPlaceName)) {
-				showInputError(element);
-				errorSpan.textContent = element.validationMessage;
-			}
-			if (element === inputPlaceName) {
-				errorSpan.textContent = `${element.validationMessage} Текст должен быть не короче 2 симв. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
-			}
-		}
-		else {
-			hideInputError(element);
-		if (errorSpan) errorSpan.textContent = '';
-		}
-	});
-
-	const submitButton = targetForm.parentElement.querySelector('button');
-	if (targetForm.checkValidity()) {
-		console.log('valid');
-		submitButton.classList.remove('popup__submit-button_disabled')
-		submitButton.disabled = false;
-	} else {
-		console.log('invlid');
-		submitButton.classList.add('popup__submit-button_disabled')
-		submitButton.disabled = true;
+/*Показать ошибку инпута*/
+const showInputError = (formElement, inputElement, validationMessage, validationSettings) => {
+  const errorSpan = formElement.querySelector(`#${inputElement.name}_error`);
+	const inputPlaceName = document.querySelector(validationSettings.inputPlaceName)
+  inputElement.classList.add(validationSettings.inputErrorClass);
+  errorSpan.textContent = validationMessage;
+	if (inputElement === inputPlaceName) {
+		errorSpan.textContent = `${inputElement.validationMessage} Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
 	}
 }
+/*Скрыть ошибку инпута*/
+const hideInputError = (formElement, inputElement, validationSettings) => {
+	const errorSpan = formElement.querySelector(`#${inputElement.name}_error`);
+  inputElement.classList.remove(validationSettings.inputErrorClass);
+  errorSpan.classList.remove(validationSettings.inputErrorActiveClass);
+	errorSpan.textContent = '';
+}
+/*Валидация пройдена*/
+const isValid = (formElement, inputElement, validationSettings) => {
+  if (!inputElement.validity.valid) {
+		console.log('Invalid');
+    showInputError(formElement, inputElement, inputElement.validationMessage, validationSettings);
+  } else {
+		console.log('Valid')
+    hideInputError(formElement, inputElement, validationSettings);
+  }
+}
+/*Включить/выключить кнопку Submit*/
+const toggleButtonState = (inputList, submit, validationSettings) => {
+  if (hasInvalidInput(inputList)) {
+    submit.disabled = true;
+    submit.classList.add(validationSettings.inactiveButtonClass);
+  } else {
+    submit.disabled = false;
+    submit.classList.remove(validationSettings.inactiveButtonClass);
+  }
+}
+/*Сама функция валидации*/
+const enableValidation = (validationSettings) => {
+  const formList = Array.from(document.querySelectorAll(validationSettings.formSelector));
+
+  formList.forEach((inputSelector) => {
+    setEventListeners(inputSelector, validationSettings);
+  });
+}
+/*Слушатели на input с ошибкой валидации*/
+function setEventListeners(formElement, validationSettings) {
+	const inputList = Array.from(formElement.querySelectorAll(validationSettings.inputSelector));
+	const submit = formElement.querySelector(validationSettings.submitButton);
+	inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", () => {
+			isValid(formElement, inputElement, validationSettings);
+			toggleButtonState(inputList, submit, validationSettings);
+    });
+  });
+}
+
+export { enableValidation, validationSettings };

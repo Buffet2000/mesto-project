@@ -1,39 +1,18 @@
 import './index.css';
-import { initialCards, addCard } from './components/card.js';
-import { enableValidation } from './components/validate.js';
+import { addCard, initialCards, create } from './components/card.js';
+import { enableValidation, validationSettings } from './components/validate.js';
 import { openPopup, closePopup } from './components/modal.js';
-/*Переменная для template*/
-const cardTemplate = document.querySelector('#element-template').content;
-/*Кнопки/окна профиля*/
-const buttonProfileEdit = document.querySelector('.profile__button-edit');
-const popupProfileEdit = document.querySelector('#edit_profile');
-const profileForm = document.querySelector('#popup_profile');
-const profileName = document.querySelector('.profile__name');
-const profileOccupation = document.querySelector('.profile__occupation');
-/*Открытое фото/кнопки*/
-const popupBigImage = document.querySelector('#big_image');
-const bigImageImage = document.querySelector('.popup__big-image');
-const bigImageDescription = document.querySelector('.popup__description');
-/*Кнопки/окна фото*/
-const buttonAddCard = document.querySelector('.profile__button-add');
-const placeForm = document.querySelector('#popup_place');
-const popupPlaceAdd = document.querySelector('#add_new_place');
-/*Инпуты*/
-const inputPlaceName = document.querySelector('.popup__input_place-name');
-const inputPlaceLink = document.querySelector('.popup__input_place-link');
-const inputProfileName = document.querySelector('.popup__input_name');
-const inputProfileOccupation = document.querySelector('.popup__input_occupation');
-/*Контейнет для всех фото-карточек*/
-const cardContainer = document.querySelector('.elements');
-/*Список всех окон (popup)*/
-const popupList = document.querySelectorAll('.popup');
+import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList } from './components/utils.js';
+/*Создание готовых карточек "из коробки"*/
+initialCards.forEach((elem) => {
+	addCard(cardContainer, create(elem.name, elem.link))
+});
 
 /*Открытие формы профиля*/
 function openProfileEditPopup () {
 	openPopup (popupProfileEdit);
 	inputProfileName.value = profileName.textContent;
 	inputProfileOccupation.value = profileOccupation.textContent;
-	const saveProfile = document.querySelector('#save_profile');
 	saveProfile.classList.add('popup__submit-button_disabled');
 	saveProfile.disabled = true;
 }
@@ -43,7 +22,6 @@ function openAddPhotoPopup () {
 	openPopup (popupPlaceAdd);
 	inputPlaceName.value = '';
 	inputPlaceLink.value = '';
-	const createCard = document.querySelector('#create')
 	createCard.classList.add('popup__submit-button_disabled');
 	createCard.disabled = true;
 }
@@ -61,12 +39,12 @@ popupList.forEach((popup) => {
 });
 
 /*Создание готовых карточек "из коробки"*/
-initialCards.forEach((elem) => {
+/*initialCards.forEach((elem) => {
 	addCard(cardContainer, create(elem.name, elem.link))
-});
+});*/
 
 /*Создание новой карточки (включая все кнопки и лайки)*/
-function create(name, link) {
+/*function create(name, link) {
 	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 	const cardImage = cardElement.querySelector('.element__image');
 
@@ -90,7 +68,7 @@ function create(name, link) {
 		bigImageDescription.textContent = name;
 	});
 	return cardElement;
-}
+}*/
 
 /*Слушатель с добавлением карточки на страницу*/
 placeForm.addEventListener('submit', function (evt) {
@@ -109,18 +87,8 @@ profileForm.addEventListener('submit', function (evt) {
 	closePopup (popupProfileEdit);
 });
 
-/*Слушатели с валидацией на input*/
-const profileFormElements = Array.from(profileForm.elements);
-const placeFormElements = Array.from(placeForm.elements);
-
-profileForm.addEventListener('input', function (evt) {
-	enableValidation(profileForm, profileFormElements);
-});
-
-placeForm.addEventListener('input', function (evt) {
-	enableValidation(placeForm, placeFormElements);
-});
-
 /*Слушатели для кнопок*/
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
 buttonProfileEdit.addEventListener('click', openProfileEditPopup);
+
+enableValidation (validationSettings);

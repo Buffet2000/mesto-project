@@ -1,11 +1,10 @@
 /*Закрытие по esc*/
 export function closeByEscape (evt) {
   if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
+		const openedPopup = document.querySelector('.popup_opened');
     closePopup (openedPopup);
   }
 }
-
 /*Открывание/закрывание окон + слушатель*/
 export function openPopup (popup) {
 	popup.classList.add('popup_opened');
