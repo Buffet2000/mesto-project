@@ -19,6 +19,7 @@ const inputProfileOccupation = document.querySelector('.popup__input_occupation'
 const popupList = document.querySelectorAll('.popup');
 /*Контейнет для всех фото-карточек*/
 const cardContainer = document.querySelector('.elements');
+const deleteButton = document.querySelector('#delete-button');
 /*Переменная для template*/
 const cardTemplate = document.querySelector('#element-template').content;
 /*Открытое фото/кнопки*/
@@ -31,6 +32,11 @@ const popupEditAvatar = document.querySelector('#popup_avatar');
 const saveAvatar = document.querySelector('#save_avatar');
 const inputEditAvatar = document.querySelector('.popup__input_avatar');
 const avatarImage = document.querySelector('.profile__avatar');
+//Попап для потверждения
+const popupConfirm = document.querySelector('#confirm_popup');
+const buttonConfirm = document.querySelector('#confirm');
+//карточка
+const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 /*Готовые карточки*/
 const initialCards = [
 	{
@@ -59,4 +65,4 @@ const initialCards = [
 	}
 	];
 
-export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription, initialCards, buttonEditAvatar, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage }
+export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription, initialCards, buttonEditAvatar, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, cardElement, deleteButton, buttonConfirm }

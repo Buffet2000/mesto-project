@@ -1,5 +1,5 @@
-import { openPopup } from "./modal.js";
-import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, cardContainer, initialCards } from './utils.js';
+import { openPopup, openConfirmationPopup, closePopup } from "./modal.js";
+import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, cardContainer, initialCards, deleteButton, buttonConfirm, popupConfirm } from './utils.js';
 
 /*Создание готовых карточек "из коробки"*/
 function readyCards () {
@@ -24,9 +24,13 @@ function create(name, link) {
 		evt.target.classList.toggle('element__like_active');
 	});
 	const deleteButton = cardElement.querySelector('.element__delete');
-
 	deleteButton.addEventListener('click', function () {
-		cardElement.remove();
+		openConfirmationPopup();
+		buttonConfirm.onclick = function (evt) {
+			evt.preventDefault();
+			cardElement.remove();
+			closePopup(popupConfirm);
+		}
 	});
 	cardImage.addEventListener('click', function () {
 		openPopup (popupBigImage);

@@ -1,8 +1,8 @@
 import '/src/index.css';
 import { addCard, create, readyCards } from './card.js';
 import { enableValidation, validationSettings } from './validate.js';
-import { closePopup, openProfileEditPopup, openAddPhotoPopup, openPopup, openAvatarEditPopup, updateAvatar } from './modal.js';
-import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar } from './utils.js';
+import { closePopup, openProfileEditPopup, openAddPhotoPopup, openPopup, openAvatarEditPopup, updateAvatar, openConfirmationPopup } from './modal.js';
+import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar, popupConfirm, saveAvatar, cardTemplate } from './utils.js';
 
 /*import { cohortId, authorizationToken, apiConfig, getProfileInfo, getCards, patchProfile, checkIfLikedByMe, likedByCurrentUser } from './api.js';*/
 /*Создаём готовые карточки*/
@@ -36,10 +36,25 @@ profileForm.addEventListener('submit', function (evt) {
 //Сохранить аватар
 popupEditAvatar.addEventListener('submit', function (evt) {
 	evt.preventDefault();
-	const link = inputEditAvatar.value;
-	updateAvatar(link);
+	const photoUrl = inputEditAvatar.value;
+	updateAvatar(photoUrl);
 	closePopup (popupEditAvatar);
-})
+});
+//Подтвердить удаление карточки
+/*popupConfirm.addEventListener('submit', function(evt) {
+	evt.preventDefault();
+	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+	cardElement.remove();
+	closePopup (popupConfirm);
+});
+let cards = document.querySelectorAll('.elements');
+cards.forEach((elem)=>{
+  elem.addEventListener('click',removeParent);
+});
+function removeParent(){
+    let revDiv = this.parentElement;
+    revDiv.remove();
+}*/
 /*Слушатели для кнопок*/
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
 buttonProfileEdit.addEventListener('click', openProfileEditPopup);

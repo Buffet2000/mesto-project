@@ -62,8 +62,26 @@
 
     </div>
 
-    <!--Профиль попап-->
+    <!--попап Подтвердения операции-->
+    <div class="popup" id="confirm_popup">
 
+      <div class="popup__container">
+    
+        <h2 class="popup__heading">Вы уверены?</h2>
+    
+        <form class="popup__input-container" name="user" id="popup_confirm">
+    
+          <button class="popup__submit-button" type="submit" aria-label="confirm" id="confirm">Да</button>
+        
+        </form>
+    
+        <button class="popup__close-button" type="button" aria-label="close" id="close_confirm"></button>
+    
+      </div>
+    
+    </div>
+
+    <!--попап Профиль-->
     <div class="popup" id="edit_profile">
 
       <div class="popup__container">
@@ -87,8 +105,7 @@
     
     </div>
 
-    <!--Изменить аватар-->
-
+    <!--попап Изменить аватар-->
     <div class="popup" id="popup_avatar">
 
       <div class="popup__container">
@@ -110,8 +127,7 @@
     
     </div>
     
-    <!--Добавить место-->
-
+    <!--попап Добавить место-->
     <div class="popup" id="add_new_place">
     
       <div class="popup__container">
@@ -148,7 +164,6 @@
     </div>
 
     <!-- element template -->
-    
     <template id="element-template">
     
       <div class="element">
@@ -168,6 +183,6 @@
       </div>
     
     </template>
-    <!------------------------>
+    <!---end element template--->
   </body>
 </html>
