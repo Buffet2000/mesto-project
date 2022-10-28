@@ -22,7 +22,7 @@
   border: 0;
 }
 
-@media (max-width: 643px) {
+@media (max-width: 800px) {
   .popup__inputs {
     width: 238px;
   }

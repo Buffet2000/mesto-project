@@ -5,7 +5,7 @@
 	padding: 0;
 }
 
-@media (max-width: 643px) {
+@media (max-width: 800px) {
 	.popup__input-container {
 		width: 232px;
 	}

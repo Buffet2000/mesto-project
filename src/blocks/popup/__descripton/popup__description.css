@@ -4,5 +4,11 @@
 	line-height: 15px;
 	margin: 0;
 	margin-top: 10px;
-	color: white; /*Подписи к карточкам были, но она сливались с фотом) Поменял цвет и вуаля - всё на месте)*/
+	color: white;
+}
+
+@media (max-width: 1200px) {
+	.popup__description {
+		margin-left: 10px;
+	}
 }
