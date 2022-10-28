@@ -25,6 +25,12 @@ const cardTemplate = document.querySelector('#element-template').content;
 const popupBigImage = document.querySelector('#big_image');
 const bigImageImage = document.querySelector('.popup__big-image');
 const bigImageDescription = document.querySelector('.popup__description');
+//Кнопка и попап для редактирования аватара
+const buttonEditAvatar = document.querySelector('#edit_avatar');
+const popupEditAvatar = document.querySelector('#popup_avatar');
+const saveAvatar = document.querySelector('#save_avatar');
+const inputEditAvatar = document.querySelector('.popup__input_avatar');
+const avatarImage = document.querySelector('.profile__avatar');
 /*Готовые карточки*/
 const initialCards = [
 	{
@@ -53,4 +59,4 @@ const initialCards = [
 	}
 	];
 
-export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription, initialCards }
+export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription, initialCards, buttonEditAvatar, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage }
