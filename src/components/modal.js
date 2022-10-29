@@ -44,9 +44,9 @@ function openConfirmationPopup () {
 	openPopup(popupConfirm)
 }
 //Обновить профиль
-function updateProfile (name, about) {
+function updateProfile (name, about) {//не уверен, что это правильное место для этой функции...
 	profileName.textContent = name;
-  profileOccupation.textContent = about;
+  profileOccupation.textContent = about;// и этой...
 }
 //Обновить аватар
 function updateAvatar (avatar) {

@@ -11,6 +11,7 @@ function readyCards () {
 function addCard(container, element) {
 	container.prepend(element);
 }
+
 /*Создание новой карточки (включая все кнопки и лайки)*/
 function create(name, link, likes) {
 	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
