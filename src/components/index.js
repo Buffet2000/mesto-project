@@ -1,5 +1,5 @@
 import '/src/index.css';
-import { getCards, getProfile, getAvatar, patchAvatar, token } from './api.js';
+import { getCards, getProfile, getAvatar, patchAvatar, patchProfile, postCard, token } from './api.js';
 import { addCard, create } from './card.js';
 import { enableValidation, validationSettings } from './validate.js';
 import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, updateAvatar, avatarPatch } from './modal.js';
@@ -8,11 +8,10 @@ import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileO
 //проба
 
 //
+
 getProfile();
 getAvatar();
 getCards();
-
-
 /*Закрытие попапов по пустому полю и кнопке*/
 popupList.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -27,16 +26,13 @@ popupList.forEach((popup) => {
 /*Слушатель с добавлением карточки на страницу*/
 placeForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
-	const name = inputPlaceName.value;
-	const link = inputPlaceLink.value;
-	addCard(cardContainer, create(name, link));
+	postCard();
 	closePopup (popupPlaceAdd);
 });
 /*Сохранить отредактированный профиль*/
 profileForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
-	profileName.textContent = inputProfileName.value;
-	profileOccupation.textContent = inputProfileOccupation.value;
+	patchProfile();
 	closePopup (popupProfileEdit);
 });
 //Сохранить аватар
