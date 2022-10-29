@@ -12,9 +12,11 @@ function addCard(container, element) {
 	container.prepend(element);
 }
 /*Создание новой карточки (включая все кнопки и лайки)*/
-function create(name, link) {
+function create(name, link, likes) {
 	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 	const cardImage = cardElement.querySelector('.element__image');
+
+	cardElement.querySelector('.element__like-counter').textContent = likes;
 
 	cardElement.querySelector('.element__title').textContent = name;
   cardImage.src = link;
