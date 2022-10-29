@@ -43,8 +43,14 @@ function openAvatarEditPopup () {
 function openConfirmationPopup () {
 	openPopup(popupConfirm)
 }
-//Сохранение аватара
-function updateAvatar (photoUrl) {
-	avatarImage.src = photoUrl;
+//Обновить профиль
+function updateProfile (name, about) {
+	profileName.textContent = name;
+  profileOccupation.textContent = about;
 }
-export { openPopup, closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateAvatar, openConfirmationPopup }
+//Обновить аватар
+function updateAvatar (avatar) {
+	avatarImage.src = avatar;
+}
+
+export { openPopup, closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, updateAvatar, openConfirmationPopup }

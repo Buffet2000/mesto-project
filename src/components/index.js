@@ -1,14 +1,15 @@
 import '/src/index.css';
-import { getCards } from './api.js';
+import { getCards, getProfile, getAvatar, patchAvatar, token } from './api.js';
 import { addCard, create } from './card.js';
 import { enableValidation, validationSettings } from './validate.js';
-import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateAvatar } from './modal.js';
+import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, updateAvatar, avatarPatch } from './modal.js';
 import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar } from './utils.js';
 
 //проба
 
-
-
+//
+getProfile();
+getAvatar();
 getCards();
 
 
@@ -41,8 +42,7 @@ profileForm.addEventListener('submit', function (evt) {
 //Сохранить аватар
 popupEditAvatar.addEventListener('submit', function (evt) {
 	evt.preventDefault();
-	const photoUrl = inputEditAvatar.value;
-	updateAvatar(photoUrl);
+  patchAvatar();
 	closePopup (popupEditAvatar);
 });
 /*Слушатели для кнопок*/
