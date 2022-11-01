@@ -3,24 +3,31 @@ import { updateProfile, updateAvatar } from './modal.js';
 import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar } from './utils.js';
 
 const token = "bc504b10-b5b7-4e7d-a9e5-28f90b8280a5"; /*Мой токен*/
+
+//Проверить ответ запроса
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    console.log('Отклонено');
+    return Promise.reject(res.statusText);
+  }
+}
+function generateCards(data) {
+  data.forEach((element) => console.log(element));
+  data.reverse().forEach((cardinfo) => {
+    addCard(cardContainer, create(cardinfo.name, cardinfo.link, cardinfo.likes.length))
+  });
+}
 //Получить карточки
 function getCards() {
-  fetch("https://nomoreparties.co/v1/plus-cohort-14/cards", {
+  return fetch("https://nomoreparties.co/v1/plus-cohort-14/cards", {
     method: "GET",
     headers: {
       authorization: `${token}`
     }
   })
-    .then((res) => {
-      return res.json();
-    })
-
-    .then((data) => {
-      //data.forEach((element) => console.log(element));
-      data.reverse().forEach((cardinfo) => {
-        addCard(cardContainer, create(cardinfo.name, cardinfo.link, cardinfo.likes.length))
-      });
-    })
+    .then(checkResponse)
 
     .catch((error) => console.log(error));
 }
@@ -105,7 +112,14 @@ function postCard() {
 }
 
 function deleteCard() {
-  //Не понимаю, как реализовывается отрисовка кнопки удаления только на твоей карточке и как удалять карту по _id. Не могу представить последовательность действий... Не понятно, что даёт понимание, что карточка создана тобою и как из неё достать id, для удаления... Очень пригодился бы пример! На самом деле в тренажёре такого примера нет... Самому сложно додуматься без помощи... Куда копать? И ещё не понял, как сделать, чтобы при добавлении карточки страница обновлялась, после закрытия попапа.
+  const cardId = '';
+  fetch(`https://nomoreparties.co/v1/plus-cohort-14/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: `${token}`,
+      'Content-Type': 'application/json'
+    },
+  })
 }
 
-export { getCards, getProfile, getAvatar, patchAvatar, patchProfile, postCard, token }
+export { getCards, getProfile, getAvatar, patchAvatar, patchProfile, postCard, deleteCard, token }
