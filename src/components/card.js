@@ -1,19 +1,13 @@
 import { openPopup, openConfirmationPopup, closePopup } from "./modal.js";
-import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, cardContainer, initialCards, deleteButton, buttonConfirm, popupConfirm } from './utils.js';
+import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, cardContainer, initialCards, deleteButton, buttonConfirm, popupConfirm, myId } from './utils.js';
 
-/*Создание готовых карточек "из коробки"*/
-function readyCards () {
-		initialCards.forEach((elem) => {
-		addCard(cardContainer, create(elem.name, elem.link))
-	});
-}
 /*Добавление карточки*/
 function addCard(container, element) {
 	container.prepend(element);
 }
 
 /*Создание новой карточки (включая все кнопки и лайки)*/
-function create(name, link, likes) {
+function create(name, link, likes, cardOwner, userId) {
 	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 	const cardImage = cardElement.querySelector('.element__image');
 
@@ -22,16 +16,22 @@ function create(name, link, likes) {
 	cardElement.querySelector('.element__title').textContent = name;
   cardImage.src = link;
 	cardImage.alt = name;
+	userId = myId.id;
 
 	cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
 		evt.target.classList.toggle('element__like_active');
 	});
+
 	const deleteButton = cardElement.querySelector('.element__delete');
+	if (userId != cardOwner) {
+		//console.log('not same!')
+    deleteButton.style.visibility = "hidden";
+  }
 	deleteButton.addEventListener('click', function () {
 		openConfirmationPopup();
 		buttonConfirm.onclick = function (evt) {
 			evt.preventDefault();
-			cardElement.remove();
+			onDelete(cardId).cardElement.remove();
 			closePopup(popupConfirm);
 		}
 	});
@@ -44,4 +44,4 @@ function create(name, link, likes) {
 	return cardElement;
 }
 
-export { addCard, create, readyCards }
+export { addCard, create }

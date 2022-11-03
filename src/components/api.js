@@ -7,17 +7,12 @@ const token = "bc504b10-b5b7-4e7d-a9e5-28f90b8280a5"; /*Мой токен*/
 //Проверить ответ запроса
 function checkResponse(res) {
   if (res.ok) {
+    console.log(res);
     return res.json();
   } else {
     console.log('Отклонено');
     return Promise.reject(res.statusText);
   }
-}
-function generateCards(data) {
-  data.forEach((element) => console.log(element));
-  data.reverse().forEach((cardinfo) => {
-    addCard(cardContainer, create(cardinfo.name, cardinfo.link, cardinfo.likes.length))
-  });
 }
 //Получить карточки
 function getCards() {
@@ -33,23 +28,17 @@ function getCards() {
 }
 //Получить профиль
 function getProfile() {
-  fetch("https://nomoreparties.co/v1/plus-cohort-14/users/me", {
+  return fetch("https://nomoreparties.co/v1/plus-cohort-14/users/me", {
     method: "GET",
     headers: {
       authorization: `${token}`
     }
   })
-    .then((res) => {
-      return res.json();
-    })
-
-    .then((data) => {
-      //console.log(data);
-      updateProfile(data.name, data.about);
-    })
+    .then(checkResponse)
 
     .catch((error) => console.log(error));
 }
+
 //Получить аватар
 function getAvatar() {
   fetch("https://nomoreparties.co/v1/plus-cohort-14/users/me", {

@@ -1,4 +1,4 @@
-import { popupPlaceAdd, popupProfileEdit, inputProfileName, inputProfileOccupation, saveProfile, inputPlaceName, inputPlaceLink, profileName, profileOccupation, createCard, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, buttonConfirm } from './utils.js';
+import { popupPlaceAdd, popupProfileEdit, inputProfileName, inputProfileOccupation, saveProfile, inputPlaceName, inputPlaceLink, profileName, profileOccupation, createCard, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, buttonConfirm, myId } from './utils.js';
 
 /*Закрытие по esc*/
 function closeByEscape (evt) {
@@ -44,9 +44,10 @@ function openConfirmationPopup () {
 	openPopup(popupConfirm)
 }
 //Обновить профиль
-function updateProfile (name, about) {//не уверен, что это правильное место для этой функции...
+function updateProfile (name, about, id) {//не уверен, что это правильное место для этой функции...
 	profileName.textContent = name;
-  profileOccupation.textContent = about;// и этой...
+  profileOccupation.textContent = about;
+	myId.id = id;
 }
 //Обновить аватар
 function updateAvatar (avatar) {

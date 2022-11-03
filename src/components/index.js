@@ -3,23 +3,32 @@ import { getCards, getProfile, getAvatar, patchAvatar, patchProfile, postCard, d
 import { addCard, create } from './card.js';
 import { enableValidation, validationSettings } from './validate.js';
 import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, updateAvatar, avatarPatch } from './modal.js';
-import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar } from './utils.js';
+import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar, myId } from './utils.js';
 
 //проба
+
 //
 
-getProfile();
 getAvatar();
 
 
 /*Создание готовых карточек "из коробки"*/
 getCards()
   .then((res) => {
-    res.forEach((element) => console.log(element));
-    res.reverse().forEach((cardinfo) => {
-      addCard(cardContainer, create(cardinfo.name, cardinfo.link, cardinfo.likes.length))
+    //res.forEach((element) => console.log(element));
+    res.reverse().forEach((cardInfo) => {
+      //console.log(cardInfo.owner._id)
+      addCard(cardContainer, create(cardInfo.name, cardInfo.link, cardInfo.likes.length, cardInfo.owner._id))
     });
   });
+
+//Обновить данные в профиле
+getProfile()
+  .then((data) => {
+    //console.log(data);
+    updateProfile(data.name, data.about, data._id);
+  })
+  
 /*Закрытие попапов по пустому полю и кнопке*/
 popupList.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
