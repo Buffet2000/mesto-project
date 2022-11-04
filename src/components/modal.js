@@ -44,14 +44,15 @@ function openConfirmationPopup () {
 	openPopup(popupConfirm)
 }
 //Обновить профиль
-function updateProfile (name, about, id) {//не уверен, что это правильное место для этой функции...
+function updateProfile (name, about, id, avatar) {//не уверен, что это правильное место для этой функции...
+	myId.id = id;
 	profileName.textContent = name;
   profileOccupation.textContent = about;
-	myId.id = id;
-}
-//Обновить аватар
-function updateAvatar (avatar) {
 	avatarImage.src = avatar;
 }
+//Удалить карточку
+/*function deleteMyCard {
+	deleteCard(cardId)
+}*/
 
-export { openPopup, closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, updateAvatar, openConfirmationPopup }
+export { openPopup, closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, openConfirmationPopup }

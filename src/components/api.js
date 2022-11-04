@@ -1,5 +1,5 @@
 import { addCard, create } from './card.js';
-import { updateProfile, updateAvatar } from './modal.js';
+import { updateProfile } from './modal.js';
 import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar } from './utils.js';
 
 const token = "bc504b10-b5b7-4e7d-a9e5-28f90b8280a5"; /*Мой токен*/
@@ -35,26 +35,6 @@ function getProfile() {
     }
   })
     .then(checkResponse)
-
-    .catch((error) => console.log(error));
-}
-
-//Получить аватар
-function getAvatar() {
-  fetch("https://nomoreparties.co/v1/plus-cohort-14/users/me", {
-    method: "GET",
-    headers: {
-      authorization: `${token}`
-    }
-  })
-    .then((res) => {
-      return res.json();
-    })
-
-    .then((data) => {
-      //console.log(data);
-      updateAvatar(data.avatar);
-    })
 
     .catch((error) => console.log(error));
 }
@@ -97,11 +77,10 @@ function postCard() {
     	name: inputPlaceName.value,
     	link: inputPlaceLink.value
   	})
-	}); 
+	});
 }
 
-function deleteCard() {
-  const cardId = '';
+function deleteCard(cardId) {
   fetch(`https://nomoreparties.co/v1/plus-cohort-14/cards/${cardId}`, {
     method: 'DELETE',
     headers: {
@@ -111,4 +90,4 @@ function deleteCard() {
   })
 }
 
-export { getCards, getProfile, getAvatar, patchAvatar, patchProfile, postCard, deleteCard, token }
+export { getCards, getProfile, patchAvatar, patchProfile, postCard, deleteCard, token }

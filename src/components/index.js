@@ -1,34 +1,34 @@
 import '/src/index.css';
-import { getCards, getProfile, getAvatar, patchAvatar, patchProfile, postCard, deleteCard, token } from './api.js';
+import { getCards, getProfile, patchAvatar, patchProfile, postCard, token } from './api.js';
 import { addCard, create } from './card.js';
 import { enableValidation, validationSettings } from './validate.js';
-import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, updateAvatar, avatarPatch } from './modal.js';
+import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, avatarPatch } from './modal.js';
 import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar, myId } from './utils.js';
 
-//проба
-
-//
-
-getAvatar();
-
-
-/*Создание готовых карточек "из коробки"*/
-getCards()
-  .then((res) => {
-    //res.forEach((element) => console.log(element));
-    res.reverse().forEach((cardInfo) => {
-      //console.log(cardInfo.owner._id)
-      addCard(cardContainer, create(cardInfo.name, cardInfo.link, cardInfo.likes.length, cardInfo.owner._id))
-    });
-  });
+//Загрузить с сервера данные
+getCardsFromServer();
+getProfileFromServer();
 
 //Обновить данные в профиле
-getProfile()
+function getProfileFromServer() {
+  getProfile()
   .then((data) => {
     //console.log(data);
-    updateProfile(data.name, data.about, data._id);
-  })
-  
+    updateProfile(data.name, data.about, data._id, data.avatar);
+  });
+}
+/*Создание готовых карточек "из коробки"*/
+function getCardsFromServer() {
+  getCards()
+  .then((res) => {
+    res.forEach((element) => console.log(element));
+    res.reverse().forEach((cardInfo) => {
+      //console.log(cardInfo.owner._id)
+      addCard(cardContainer, create(cardInfo.name, cardInfo.link, cardInfo.likes.length, cardInfo.owner._id, cardInfo._id))
+    });
+  });
+}
+
 /*Закрытие попапов по пустому полю и кнопке*/
 popupList.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -45,21 +45,21 @@ placeForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
 	postCard();
 	closePopup (popupPlaceAdd);
-  setTimeout(getCards, 1000);
+  setTimeout(getCardsFromServer, 500);
 });
 /*Сохранить отредактированный профиль*/
 profileForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
 	patchProfile();
 	closePopup (popupProfileEdit);
-  setTimeout(getProfile, 1000);
+  setTimeout(getProfileFromServer, 500);
 });
 //Сохранить аватар
 popupEditAvatar.addEventListener('submit', function (evt) {
 	evt.preventDefault();
   patchAvatar();
 	closePopup (popupEditAvatar);
-  setTimeout(getAvatar, 1000);
+  setTimeout(getProfileFromServer, 500);
 });
 /*Слушатели для кнопок*/
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
