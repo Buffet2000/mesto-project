@@ -9,7 +9,9 @@ function addCard(container, element) {
 //Проверка наличия лайка
 const likedByMe = (likes, Id) => {
   for (const like of likes) {
-		like._id.includes(Id)
+    if (like._id.includes(Id)) {
+      return true;
+    }
   }
 }
 
