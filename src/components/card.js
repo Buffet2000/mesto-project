@@ -30,13 +30,14 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
 	}
 
 	cardElement.querySelector('.element__like').addEventListener('mousedown', function () {
-		cardElement.querySelector('#like-button').classList.toggle('element__like_active');
+		cardElement.querySelector('#like-button').classList.add('element__like_active');
 		console.log('putLike')
 		putLike(cardId)
 			.then((res) => {
 				cardElement.querySelector('.element__like-counter').textContent = res.likes.length;
 			});
 		if (likedByMe(likes, myId.id)) {
+			cardElement.querySelector('#like-button').classList.remove('element__like_active');
 			console.log('deleteLike')
 			deleteLike(cardId)
 				.then((res) => {
