@@ -7,7 +7,7 @@ const token = "bc504b10-b5b7-4e7d-a9e5-28f90b8280a5"; /*Мой токен*/
 //Проверить ответ запроса
 function checkResponse(res) {
   if (res.ok) {
-    console.log(res);
+    //console.log(res);
     return res.json();
     
   } else {
@@ -90,6 +90,8 @@ function deleteCard(cardId) {
     }
   })
   .then(checkResponse)
+
+  .catch((error) => console.log(error));
 }
 //Отправить лайк
 function putLike(cardId) {
@@ -101,6 +103,8 @@ function putLike(cardId) {
     }
   })
   .then(checkResponse)
+
+  .catch((error) => console.log(error));
 }
 //Удалить лайк
 function deleteLike(cardId) {
@@ -112,6 +116,8 @@ function deleteLike(cardId) {
     }
   })
   .then(checkResponse)
+
+  .catch((error) => console.log(error));
 }
 
 export { getCards, getProfile, patchAvatar, patchProfile, postCard, deleteCard, putLike, deleteLike, token }

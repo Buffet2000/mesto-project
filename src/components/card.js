@@ -9,12 +9,8 @@ function addCard(container, element) {
 //Проверка наличия лайка
 const likedByMe = (likes, Id) => {
   for (const like of likes) {
-		//console.log(like._id)
-    if (like._id.includes(Id)) {
-      return true;
-    }
+		like._id.includes(Id)
   }
-  return false;
 }
 
 //Создание новой карточки (включая все кнопки и лайки)
@@ -31,17 +27,19 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
 		cardElement.querySelector('#like-button').classList.add('element__like_active');
 	}
 
-	cardElement.querySelector('.element__like').addEventListener('mousedown', function (evt) {
+	cardElement.querySelector('.element__like').addEventListener('mousedown', function () {
 		cardElement.querySelector('#like-button').classList.toggle('element__like_active');
+		console.log('putLike')
 		putLike(cardId)
 			.then((res) => {
 				cardElement.querySelector('.element__like-counter').textContent = res.likes.length;
 			});
 		if (likedByMe(likes, myId.id)) {
+			console.log('deleteLike')
 			deleteLike(cardId)
-			.then((res) => {
-				cardElement.querySelector('.element__like-counter').textContent = res.likes.length;
-			});
+				.then((res) => {
+					cardElement.querySelector('.element__like-counter').textContent = res.likes.length;
+				});
 		}
 	});
 	
