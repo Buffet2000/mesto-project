@@ -1,4 +1,4 @@
-import { popupPlaceAdd, popupProfileEdit, inputProfileName, inputProfileOccupation, saveProfile, inputPlaceName, inputPlaceLink, profileName, profileOccupation, createCard, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, buttonConfirm, myId } from './utils.js';
+import { popupPlaceAdd, popupProfileEdit, inputProfileName, inputProfileOccupation, saveProfile, inputPlaceName, inputPlaceLink, profileName, profileOccupation, createCard, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, myId } from './utils.js';
 
 /*Закрытие по esc*/
 function closeByEscape (evt) {
@@ -50,9 +50,5 @@ function updateProfile (name, about, id, avatar) {//не уверен, что э
   profileOccupation.textContent = about;
 	avatarImage.src = avatar;
 }
-//Удалить карточку
-/*function deleteMyCard {
-	deleteCard(cardId)
-}*/
 
 export { openPopup, closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, openConfirmationPopup }

@@ -1,6 +1,5 @@
-import { addCard, create } from './card.js';
-import { updateProfile } from './modal.js';
-import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar } from './utils.js';
+
+import { inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, inputEditAvatar } from './utils.js';
 
 const token = "bc504b10-b5b7-4e7d-a9e5-28f90b8280a5"; /*Мой токен*/
 
@@ -50,7 +49,10 @@ function patchAvatar() {
     body: JSON.stringify({
       avatar: inputEditAvatar.value
     })
-  }); 
+  })
+  .then(checkResponse)
+
+  .catch((error) => console.log(error));
 }
 //Обновить профиль
 function patchProfile() {
@@ -64,7 +66,10 @@ function patchProfile() {
       name: inputProfileName.value,
       about: inputProfileOccupation.value
     })
-  }); 
+  })
+  .then(checkResponse)
+
+  .catch((error) => console.log(error));
 }
 //Опубликовать карточку
 function postCard() {
@@ -78,7 +83,10 @@ function postCard() {
     	name: inputPlaceName.value,
     	link: inputPlaceLink.value
   	})
-	});
+	})
+  .then(checkResponse)
+
+  .catch((error) => console.log(error));
 }
 //Удалить карточку
 function deleteCard(cardId) {

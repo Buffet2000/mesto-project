@@ -1,9 +1,9 @@
 import '/src/index.css';
-import { getCards, getProfile, patchAvatar, patchProfile, postCard, putLike, token } from './api.js';
+import { getCards, getProfile, patchAvatar, patchProfile, postCard } from './api.js';
 import { addCard, create } from './card.js';
 import { enableValidation, validationSettings } from './validate.js';
-import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, avatarPatch } from './modal.js';
-import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar, likeCounter } from './utils.js';
+import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile } from './modal.js';
+import { buttonProfileEdit, popupProfileEdit, profileForm, buttonAddCard, placeForm, popupPlaceAdd, cardContainer, popupList, buttonEditAvatar, popupEditAvatar } from './utils.js';
 
 //Загрузить с сервера данные
 getCardsFromServer();
