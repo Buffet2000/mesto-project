@@ -1,6 +1,6 @@
 import { openPopup, openConfirmationPopup, closePopup } from "./modal.js";
-import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, cardContainer, initialCards, deleteButton, buttonConfirm, popupConfirm, likeButton, myId } from './utils.js';
-import { deleteCard, putLike } from './api.js';
+import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, cardContainer, initialCards, deleteButton, buttonConfirm, popupConfirm, myId } from './utils.js';
+import { deleteCard, putLike, deleteLike, getCards } from './api.js';
 
 /*Добавление карточки*/
 function addCard(container, element) {
@@ -21,19 +21,28 @@ const likedByMe = (likes, Id) => {
 function create(name, link, likesLength, likes, cardOwner, cardId) {
 	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 	const cardImage = cardElement.querySelector('.element__image');
-
-	cardElement.querySelector('.element__like-counter').textContent = likesLength;
+	const likeCounter = cardElement.querySelector('.element__like-counter').textContent = likesLength;
+	
 	cardElement.querySelector('.element__title').textContent = name;
   cardImage.src = link;
 	cardImage.alt = name;
 
 	if (likedByMe(likes, myId.id)) {
 		cardElement.querySelector('#like-button').classList.add('element__like_active');
-
 	}
 
 	cardElement.querySelector('.element__like').addEventListener('mousedown', function (evt) {
-		putLike(cardId);
+		cardElement.querySelector('#like-button').classList.toggle('element__like_active');
+		putLike(cardId)
+			.then((res) => {
+				cardElement.querySelector('.element__like-counter').textContent = res.likes.length;
+			});
+		if (likedByMe(likes, myId.id)) {
+			deleteLike(cardId)
+			.then((res) => {
+				cardElement.querySelector('.element__like-counter').textContent = res.likes.length;
+			});
+		}
 	});
 	
 	const deleteButton = cardElement.querySelector('#delete-button');

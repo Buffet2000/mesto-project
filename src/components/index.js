@@ -8,15 +8,6 @@ import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileO
 //Загрузить с сервера данные
 getCardsFromServer();
 getProfileFromServer();
-//Поставить лайк
-function likeCard(cardId) {
-  putLike(cardId)
-  .then((res) => {
-    likeCounter.textContent = res['likes'].length;
-    evt.target.classList.toggle('elements__like_active');
-    likes = res['likes'];
-  })
-}
 //Обновить данные в профиле
 function getProfileFromServer() {
   getProfile()

@@ -82,13 +82,14 @@ function postCard() {
 }
 //Удалить карточку
 function deleteCard(cardId) {
-  fetch(`https://nomoreparties.co/v1/plus-cohort-14/cards/${cardId}`, {
+  return fetch(`https://nomoreparties.co/v1/plus-cohort-14/cards/${cardId}`, {
     method: 'DELETE',
     headers: {
       authorization: `${token}`,
       'Content-Type': 'application/json'
-    },
+    }
   })
+  .then(checkResponse)
 }
 //Отправить лайк
 function putLike(cardId) {
@@ -101,4 +102,16 @@ function putLike(cardId) {
   })
   .then(checkResponse)
 }
-export { getCards, getProfile, patchAvatar, patchProfile, postCard, deleteCard, putLike, token }
+//Удалить лайк
+function deleteLike(cardId) {
+  return fetch(`https://nomoreparties.co/v1/plus-cohort-14/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: `${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(checkResponse)
+}
+
+export { getCards, getProfile, patchAvatar, patchProfile, postCard, deleteCard, putLike, deleteLike, token }
