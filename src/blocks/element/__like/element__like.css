@@ -15,3 +15,9 @@
 .element__like:hover {
   opacity: 0.6;
 }
+
+@media (max-width: 900px) {
+	.element__like:hover {
+    opacity: 1;
+  }
+}

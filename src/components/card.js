@@ -9,7 +9,15 @@ function addCard(container, element) {
 //Проверка наличия лайка
 const likedByMe = (likes, Id) => {
   for (const like of likes) {
-    if (like._id.includes(Id)) {
+    if (like._id === Id) {
+      return true;
+    }
+  }
+}
+
+const notLikedByMe = (likes, Id, length) => {
+  for (const like of likes) {
+    if (like._id !== Id || like._id !== Id && length >= 0) {
       return true;
     }
   }
@@ -19,7 +27,7 @@ const likedByMe = (likes, Id) => {
 function create(name, link, likesLength, likes, cardOwner, cardId) {
 	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
 	const cardImage = cardElement.querySelector('.element__image');
-	const likeCounter = cardElement.querySelector('.element__like-counter').textContent = likesLength;
+	cardElement.querySelector('.element__like-counter').textContent = likesLength;
 	
 	cardElement.querySelector('.element__title').textContent = name;
   cardImage.src = link;
