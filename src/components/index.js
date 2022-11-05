@@ -1,14 +1,22 @@
 import '/src/index.css';
-import { getCards, getProfile, patchAvatar, patchProfile, postCard, token } from './api.js';
+import { getCards, getProfile, patchAvatar, patchProfile, postCard, putLike, token } from './api.js';
 import { addCard, create } from './card.js';
 import { enableValidation, validationSettings } from './validate.js';
 import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, avatarPatch } from './modal.js';
-import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar, myId } from './utils.js';
+import { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, buttonEditAvatar, inputEditAvatar, popupEditAvatar, likeCounter } from './utils.js';
 
 //Загрузить с сервера данные
 getCardsFromServer();
 getProfileFromServer();
-
+//Поставить лайк
+function likeCard(cardId) {
+  putLike(cardId)
+  .then((res) => {
+    likeCounter.textContent = res['likes'].length;
+    evt.target.classList.toggle('elements__like_active');
+    likes = res['likes'];
+  })
+}
 //Обновить данные в профиле
 function getProfileFromServer() {
   getProfile()
@@ -21,10 +29,10 @@ function getProfileFromServer() {
 function getCardsFromServer() {
   getCards()
   .then((res) => {
-    res.forEach((element) => console.log(element));
+    //res.forEach((element) => console.log(element));
     res.reverse().forEach((cardInfo) => {
-      //console.log(cardInfo.owner._id)
-      addCard(cardContainer, create(cardInfo.name, cardInfo.link, cardInfo.likes.length, cardInfo.owner._id, cardInfo._id))
+      //console.log(cardInfo['owner']['_id']);
+      addCard(cardContainer, create(cardInfo.name, cardInfo.link, cardInfo.likes.length, cardInfo.likes, cardInfo.owner._id, cardInfo._id))
     });
   });
 }

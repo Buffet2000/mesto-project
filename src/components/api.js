@@ -9,6 +9,7 @@ function checkResponse(res) {
   if (res.ok) {
     console.log(res);
     return res.json();
+    
   } else {
     console.log('Отклонено');
     return Promise.reject(res.statusText);
@@ -79,7 +80,7 @@ function postCard() {
   	})
 	});
 }
-
+//Удалить карточку
 function deleteCard(cardId) {
   fetch(`https://nomoreparties.co/v1/plus-cohort-14/cards/${cardId}`, {
     method: 'DELETE',
@@ -89,5 +90,15 @@ function deleteCard(cardId) {
     },
   })
 }
-
-export { getCards, getProfile, patchAvatar, patchProfile, postCard, deleteCard, token }
+//Отправить лайк
+function putLike(cardId) {
+  return fetch(`https://nomoreparties.co/v1/plus-cohort-14/cards/likes/${cardId}`, {
+    method: 'PUT',
+    headers: {
+      authorization: `${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(checkResponse)
+}
+export { getCards, getProfile, patchAvatar, patchProfile, postCard, deleteCard, putLike, token }
