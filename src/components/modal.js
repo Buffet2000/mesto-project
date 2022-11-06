@@ -1,4 +1,4 @@
-import { popupPlaceAdd, popupProfileEdit, inputProfileName, inputProfileOccupation, saveProfile, inputPlaceName, inputPlaceLink, profileName, profileOccupation, createCard, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, myId } from './utils.js';
+import { popupList } from './utils.js';
 
 /*Закрытие по esc*/
 function closeByEscape (evt) {
@@ -16,39 +16,18 @@ function closePopup (popup) {
 	popup.classList.remove('popup_opened');
 	document.removeEventListener('keydown', closeByEscape);
 }
-/*Открытие формы профиля*/
-function openProfileEditPopup () {
-	openPopup (popupProfileEdit);
-	inputProfileName.value = profileName.textContent;
-	inputProfileOccupation.value = profileOccupation.textContent;
-	saveProfile.classList.add('popup__submit-button_disabled');
-	saveProfile.disabled = true;
-}
-/*Открытие формы добавления фото*/
-function openAddPhotoPopup () {
-	openPopup (popupPlaceAdd);
-	inputPlaceName.value = '';
-	inputPlaceLink.value = '';
-	createCard.classList.add('popup__submit-button_disabled');
-	createCard.disabled = true;
-}
-//Открытие попапа для редактирования аватара
-function openAvatarEditPopup () {
-	openPopup (popupEditAvatar);
-	saveAvatar.classList.add('popup__submit-button_disabled');
-	saveAvatar.disabled = true;
-	inputEditAvatar.value = '';
-}
-//Открытие окна подтверждения
-function openConfirmationPopup () {
-	openPopup(popupConfirm)
-}
-//Обновить профиль
-function updateProfile (name, about, id, avatar) {//не уверен, что это правильное место для этой функции...
-	myId.id = id;
-	profileName.textContent = name;
-  profileOccupation.textContent = about;
-	avatarImage.src = avatar;
+//Закрытие попапов по пустому полю и кнопке
+function closePopupByOverlay() {
+	popupList.forEach((popup) => {
+  	popup.addEventListener('mousedown', (evt) => {
+    	if (evt.target.classList.contains('popup_opened')) {
+      	closePopup(popup)
+    	}
+    	if (evt.target.classList.contains('popup__close-button')) {
+      	closePopup(popup)
+    	}
+  	});
+	});
 }
 
-export { openPopup, closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile, openConfirmationPopup }
+export { openPopup, closePopup, closePopupByOverlay }

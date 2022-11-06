@@ -23,8 +23,6 @@ function getCards() {
     }
   })
     .then(checkResponse)
-
-    .catch((error) => console.log(error));
 }
 //Получить профиль
 function getProfile() {
@@ -35,12 +33,10 @@ function getProfile() {
     }
   })
     .then(checkResponse)
-
-    .catch((error) => console.log(error));
 }
 //обновить аватар профиля
 function patchAvatar() {
-  fetch('https://nomoreparties.co/v1/plus-cohort-14/users/me/avatar', {
+  return fetch('https://nomoreparties.co/v1/plus-cohort-14/users/me/avatar', {
     method: 'PATCH',
     headers: {
       authorization: `${token}`,
@@ -51,12 +47,10 @@ function patchAvatar() {
     })
   })
   .then(checkResponse)
-
-  .catch((error) => console.log(error));
 }
 //Обновить профиль
 function patchProfile() {
-  fetch('https://nomoreparties.co/v1/plus-cohort-14/users/me', {
+  return fetch('https://nomoreparties.co/v1/plus-cohort-14/users/me', {
     method: 'PATCH',
     headers: {
       authorization: `${token}`,
@@ -68,25 +62,21 @@ function patchProfile() {
     })
   })
   .then(checkResponse)
-
-  .catch((error) => console.log(error));
 }
 //Опубликовать карточку
-function postCard() {
-	fetch('https://nomoreparties.co/v1/plus-cohort-14/cards', {
+function postCard(name, link) {
+	return fetch('https://nomoreparties.co/v1/plus-cohort-14/cards', {
   	method: 'POST',
   	headers: {
     	authorization: `${token}`,
     	'Content-Type': 'application/json'
   	},
   	body: JSON.stringify({
-    	name: inputPlaceName.value,
-    	link: inputPlaceLink.value
+    	name: name,
+    	link: link
   	})
 	})
   .then(checkResponse)
-
-  .catch((error) => console.log(error));
 }
 //Удалить карточку
 function deleteCard(cardId) {
@@ -98,8 +88,6 @@ function deleteCard(cardId) {
     }
   })
   .then(checkResponse)
-
-  .catch((error) => console.log(error));
 }
 //Отправить лайк
 function putLike(cardId) {
@@ -111,8 +99,6 @@ function putLike(cardId) {
     }
   })
   .then(checkResponse)
-
-  .catch((error) => console.log(error));
 }
 //Удалить лайк
 function deleteLike(cardId) {
@@ -124,8 +110,6 @@ function deleteLike(cardId) {
     }
   })
   .then(checkResponse)
-
-  .catch((error) => console.log(error));
 }
 
 export { getCards, getProfile, patchAvatar, patchProfile, postCard, deleteCard, putLike, deleteLike, token }

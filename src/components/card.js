@@ -1,5 +1,5 @@
-import { openPopup, openConfirmationPopup, closePopup } from "./modal.js";
-import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, buttonConfirm, popupConfirm, myId } from './utils.js';
+import { openPopup, closePopup } from "./modal.js";
+import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, popupConfirm, buttonConfirm, myId } from './utils.js';
 import { deleteCard, putLike, deleteLike } from './api.js';
 
 /*Добавление карточки*/
@@ -14,7 +14,10 @@ const likedByMe = (likes, Id) => {
     }
   }
 }
-
+//Открытие окна подтверждения
+function openConfirmationPopup () {
+	openPopup(popupConfirm)
+}
 //Создание новой карточки (включая все кнопки и лайки)
 function create(name, link, likesLength, likes, cardOwner, cardId) {
 	const cardElement = cardTemplate.querySelector('.element').cloneNode(true);

@@ -90,7 +90,7 @@
     
         <form class="popup__input-container" name="user" id="popup_profile">
     
-          <input class="popup__inputs popup__input_name" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
+          <input class="popup__inputs popup__input_name" name="name" type="text" pattern="^[A-ZÄÖa-zäöА-Яа-яЁё\s\-]+" placeholder="Имя" minlength="2" maxlength="40" required>
           <span class="popup__input_error-message" id="name_error"></span>
           <input class="popup__inputs popup__input_occupation" name="occupation" type="text" placeholder="О себе" minlength="2" maxlength="200" required>
           <span class="popup__input_error-message" id="occupation_error"></span>
@@ -136,7 +136,7 @@
     
         <form class="popup__input-container" id="popup_place" name="new_place">
     
-          <input class="popup__inputs popup__input_place-name" name="place-name" type="text" placeholder="Название" pattern="^[A-Za-zА-Яа-яЁё\s\-]+" minlength="2" maxlength="30" required>
+          <input class="popup__inputs popup__input_place-name" name="place-name" type="text" placeholder="Название" pattern="^[A-ZÄÖa-zäöА-Яа-яЁё\s\-]+" minlength="2" maxlength="30" required>
           <span class="popup__input_error-message" id="place-name_error"></span>
           <input class="popup__inputs popup__input_place-link" name="place-link" type="url" placeholder="Ссылка на картинку" minlength="2" required>
           <span class="popup__input_error-message" id="place-link_error"></span>

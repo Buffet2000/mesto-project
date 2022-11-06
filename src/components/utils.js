@@ -1,3 +1,14 @@
+//Настройки валидации
+const validationSettings = {
+	formSelector: '.popup__input-container',
+	inputSelector: '.popup__inputs',
+	inputPlaceName: '.popup__input_place-name',
+	inputProfileName: '.popup__input_name',
+	submitButton: '.popup__submit-button',
+	inactiveButtonClass: 'popup__submit-button_disabled',
+	inputErrorClass: 'popup__input_error',
+	errorMessage: '.popup__input_error-message'
+}
 /*Кнопки/окна профиля*/
 const buttonProfileEdit = document.querySelector('.profile__button-edit');
 const popupProfileEdit = document.querySelector('#edit_profile');
@@ -39,34 +50,8 @@ const popupConfirm = document.querySelector('#confirm_popup');
 const buttonConfirm = document.querySelector('#confirm');
 //карточка
 const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-/*Готовые карточки*/
-const initialCards = [
-	{
-		name: 'Архыз',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-	},
-	{
-		name: 'Челябинская область',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-	},
-	{
-		name: 'Иваново',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-	},
-	{
-		name: 'Камчатка',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-	},
-	{
-		name: 'Холмогорский район',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-	},
-	{
-		name: 'Байкал',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-	}
-	];
+//Мой id пользоваткля
+const myId = {};
+console.log(myId.id);
 
-	const myId = {};
-
-export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription, initialCards, buttonEditAvatar, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, cardElement, deleteButton, buttonConfirm, likeCounter, likeButton, myId }
+export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription, buttonEditAvatar, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, cardElement, deleteButton, buttonConfirm, likeCounter, likeButton, myId, validationSettings }

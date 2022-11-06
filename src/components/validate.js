@@ -1,13 +1,3 @@
-const validationSettings = {
-	formSelector: '.popup__input-container',
-  inputSelector: '.popup__inputs',
-	inputPlaceName: '.popup__input_place-name',
-  submitButton: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  inputErrorClass: 'popup__input_error',
-  errorMessage: '.popup__input_error-message'
-}
-
 /*Инпуты не прошедшие валидацию*/
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
@@ -17,10 +7,11 @@ const hasInvalidInput = (inputList) => {
 /*Показать ошибку инпута*/
 const showInputError = (formElement, inputElement, validationMessage, validationSettings) => {
   const errorSpan = formElement.querySelector(`#${inputElement.name}_error`);
-	const inputPlaceName = document.querySelector(validationSettings.inputPlaceName)
+	const inputPlaceName = document.querySelector(validationSettings.inputPlaceName);
+  const inputProfileName = document.querySelector(validationSettings.inputProfileName);
   inputElement.classList.add(validationSettings.inputErrorClass);
   errorSpan.textContent = validationMessage;
-	if (inputElement === inputPlaceName) {
+	if (inputElement === inputPlaceName || inputProfileName) {
 		errorSpan.textContent = `${inputElement.validationMessage} Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
 	}
 }
@@ -70,5 +61,4 @@ function setEventListeners(formElement, validationSettings) {
     });
   });
 }
-
-export { enableValidation, validationSettings };
+export { enableValidation };
