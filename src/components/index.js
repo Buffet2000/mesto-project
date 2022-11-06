@@ -68,7 +68,7 @@ placeForm.addEventListener('submit', function (evt) {
 profileForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
   saveProfile.textContent = 'Сохранение...';
-	patchProfile()
+	patchProfile(inputProfileName.value, inputProfileOccupation.value)
     .then ((data) => {
       updateProfile (data.name, data.about, data.id, data.avatar);
       closePopup (popupProfileEdit);
@@ -84,9 +84,9 @@ profileForm.addEventListener('submit', function (evt) {
 popupEditAvatar.addEventListener('submit', function (evt) {
 	evt.preventDefault();
   saveAvatar.textContent = 'Сохранение...';
-  patchAvatar()
+  patchAvatar(inputEditAvatar.value)
     .then((data) => {
-      updateProfile (data.avatar);
+      updateProfile (data.name, data.about, data.id, data.avatar);
       closePopup (popupEditAvatar);
     })
     .catch((err) => {
