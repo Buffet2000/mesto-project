@@ -1,5 +1,7 @@
 .popup__input_error-message {
+	display: block;
 	max-width: 358px;
+	min-height: 34px;
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;

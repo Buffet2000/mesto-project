@@ -1,3 +1,4 @@
+import { validationSettings } from './utils.js';
 /*Инпуты не прошедшие валидацию*/
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
@@ -11,8 +12,11 @@ const showInputError = (formElement, inputElement, validationMessage, validation
   const inputProfileName = document.querySelector(validationSettings.inputProfileName);
   inputElement.classList.add(validationSettings.inputErrorClass);
   errorSpan.textContent = validationMessage;
-	if (inputElement === inputPlaceName || inputProfileName) {
-		errorSpan.textContent = `${inputElement.validationMessage} Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы`;
+	if (inputElement == inputPlaceName) {
+		errorSpan.textContent = 'Минимум символов 2. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы';
+	}
+  if (inputElement == inputProfileName) {
+		errorSpan.textContent = 'Минимум символов 2. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы';
 	}
 }
 /*Скрыть ошибку инпута*/

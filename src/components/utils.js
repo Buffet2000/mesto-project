@@ -7,7 +7,6 @@ const validationSettings = {
 	submitButton: '.popup__submit-button',
 	inactiveButtonClass: 'popup__submit-button_disabled',
 	inputErrorClass: 'popup__input_error',
-	errorMessage: '.popup__input_error-message'
 }
 /*Кнопки/окна профиля*/
 const buttonProfileEdit = document.querySelector('.profile__button-edit');
