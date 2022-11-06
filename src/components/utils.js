@@ -23,6 +23,7 @@ const deleteButton = document.querySelector('#delete-button');
 /*Переменная для template*/
 const cardTemplate = document.querySelector('#element-template').content;
 const likeCounter = document.querySelector('.element__like-counter');
+const likeButton = document.querySelector('#like-button');
 /*Открытое фото/кнопки*/
 const popupBigImage = document.querySelector('#big_image');
 const bigImageImage = document.querySelector('.popup__big-image');
@@ -68,4 +69,4 @@ const initialCards = [
 
 	const myId = {};
 
-export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription, initialCards, buttonEditAvatar, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, cardElement, deleteButton, buttonConfirm, likeCounter, myId }
+export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription, initialCards, buttonEditAvatar, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, cardElement, deleteButton, buttonConfirm, likeCounter, likeButton, myId }

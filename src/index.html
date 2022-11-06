@@ -28,7 +28,7 @@
 
             <img class="profile__avatar" src="" alt="фото-аватар">
 
-            <button class="profile__avatar-edit" id="edit_avatar" type="button"></button>
+            <button class="profile__avatar-edit" id="edit_avatar" aria-label="edit" type="button"></button>
 
           </div>
 
@@ -91,7 +91,7 @@
         <form class="popup__input-container" name="user" id="popup_profile">
     
           <input class="popup__inputs popup__input_name" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
-          <span class="popup__input_error-message" id="name_error" required></span>
+          <span class="popup__input_error-message" id="name_error"></span>
           <input class="popup__inputs popup__input_occupation" name="occupation" type="text" placeholder="О себе" minlength="2" maxlength="200" required>
           <span class="popup__input_error-message" id="occupation_error"></span>
     
@@ -112,10 +112,10 @@
     
         <h2 class="popup__heading">Обновить аватар</h2>
     
-        <form class="popup__input-container" name="user" id="popup_profile">
+        <form class="popup__input-container" name="user" id="avatar_form">
     
           <input class="popup__inputs popup__input_avatar" name="avatar" type="url" placeholder="Ссылка на картинку" minlength="2" required>
-          <span class="popup__input_error-message" id="avatar_error" required></span>
+          <span class="popup__input_error-message" id="avatar_error"></span>
           
           <button class="popup__submit-button" type="submit" aria-label="save" id="save_avatar" disabled="disabled">Сохранить</button>
         
@@ -155,7 +155,7 @@
 
       <div class="popup__image-container">
 
-        <button class="popup__close-button" type="button" aria-label="закрыть" id="popup_image_close"></button>
+        <button class="popup__close-button" type="button" aria-label="close" id="popup_image_close"></button>
         <img src="" alt="большая_картинка" class="popup__big-image">
         <p class="popup__description"></p>
 
@@ -186,6 +186,6 @@
       </div>
     
     </template>
-    <!---end element template--->
+    <!--end-->
   </body>
 </html>

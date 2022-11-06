@@ -3,7 +3,7 @@ import { getCards, getProfile, patchAvatar, patchProfile, postCard } from './api
 import { addCard, create } from './card.js';
 import { enableValidation, validationSettings } from './validate.js';
 import { closePopup, openProfileEditPopup, openAddPhotoPopup, openAvatarEditPopup, updateProfile } from './modal.js';
-import { buttonProfileEdit, popupProfileEdit, profileForm, buttonAddCard, placeForm, popupPlaceAdd, cardContainer, popupList, buttonEditAvatar, popupEditAvatar } from './utils.js';
+import { buttonProfileEdit, popupProfileEdit, profileForm, buttonAddCard, placeForm, popupPlaceAdd, cardContainer, popupList, buttonEditAvatar, popupEditAvatar, createCard, saveProfile, saveAvatar } from './utils.js';
 
 //Загрузить с сервера данные
 getCardsFromServer();
@@ -27,7 +27,6 @@ function getCardsFromServer() {
     });
   });
 }
-
 /*Закрытие попапов по пустому полю и кнопке*/
 popupList.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -42,23 +41,38 @@ popupList.forEach((popup) => {
 /*Слушатель с добавлением карточки на страницу*/
 placeForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
+  createCard.textContent = 'Сохранение...';
 	postCard();
-	closePopup (popupPlaceAdd);
-  setTimeout(getCardsFromServer, 500);
+  setTimeout(() => {
+    getCardsFromServer();
+    //console.log("Delayed for 1 second.");
+    closePopup (popupPlaceAdd);
+    createCard.textContent = 'Создать'
+  }, 1000)
 });
 /*Сохранить отредактированный профиль*/
 profileForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
+  saveProfile.textContent = 'Сохранение...';
 	patchProfile();
-	closePopup (popupProfileEdit);
-  setTimeout(getProfileFromServer, 500);
+  setTimeout(() => {
+    getProfileFromServer();
+    //console.log("Delayed for 1 second.");
+    closePopup (popupProfileEdit);
+    createCard.textContent = 'Сохранить'
+  }, 1000)
 });
 //Сохранить аватар
 popupEditAvatar.addEventListener('submit', function (evt) {
 	evt.preventDefault();
+  saveAvatar.textContent = 'Сохранение...';
   patchAvatar();
-	closePopup (popupEditAvatar);
-  setTimeout(getProfileFromServer, 500);
+  setTimeout(() => {
+    getProfileFromServer();
+    //console.log("Delayed for 1 second.");
+    closePopup (popupEditAvatar);
+    saveAvatar.textContent = 'Сохранить'
+  }, 1000)
 });
 /*Слушатели для кнопок*/
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
