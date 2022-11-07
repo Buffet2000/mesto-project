@@ -5,7 +5,6 @@ const config = {
     'Content-Type': 'application/json'
   }
 }
-
 //Проверить ответ запроса
 function checkResponse(res) {
   if (res.ok) {

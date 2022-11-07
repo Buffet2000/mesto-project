@@ -1,13 +1,14 @@
 import { popupList } from './utils.js';
+/*Не увидел, что код разлетается в GitHub... Prettier стоял, но работал не правильно. Поправил*/
 
-/*Закрытие по esc*/
+//Закрытие по esc
 function closeByEscape (evt) {
   if (evt.key === 'Escape') {
 		const openedPopup = document.querySelector('.popup_opened');
     closePopup (openedPopup);
   }
 }
-/*Открывание/закрывание окон + слушатель*/
+//Открывание/закрывание окон + слушатель
 function openPopup (popup) {
 	popup.classList.add('popup_opened');
 	document.addEventListener('keydown', closeByEscape);

@@ -1,32 +1,32 @@
-import { validationSettings } from './utils.js';
-/*Инпуты не прошедшие валидацию*/
+//Инпуты не прошедшие валидацию
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 }
-/*Показать ошибку инпута*/
+//Показать ошибку инпута
 const showInputError = (formElement, inputElement, validationMessage, validationSettings) => {
   const errorSpan = formElement.querySelector(`#${inputElement.name}_error`);
 	const inputPlaceName = document.querySelector(validationSettings.inputPlaceName);
   const inputProfileName = document.querySelector(validationSettings.inputProfileName);
+  //const customError = inputPlaceName.getAttribute('data-customError');
   inputElement.classList.add(validationSettings.inputErrorClass);
   errorSpan.textContent = validationMessage;
 	if (inputElement == inputPlaceName) {
-		errorSpan.textContent = 'Минимум символов 2. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы';
+		errorSpan.textContent = inputPlaceName.getAttribute('data-error');
 	}
   if (inputElement == inputProfileName) {
-		errorSpan.textContent = 'Минимум символов 2. Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы';
+		errorSpan.textContent = inputProfileName.getAttribute('data-error');
 	}
 }
-/*Скрыть ошибку инпута*/
+//Скрыть ошибку инпута
 const hideInputError = (formElement, inputElement, validationSettings) => {
 	const errorSpan = formElement.querySelector(`#${inputElement.name}_error`);
   inputElement.classList.remove(validationSettings.inputErrorClass);
   errorSpan.classList.remove(validationSettings.inputErrorActiveClass);
 	errorSpan.textContent = '';
 }
-/*Валидация пройдена*/
+//Валидация пройдена
 const isValid = (formElement, inputElement, validationSettings) => {
   if (!inputElement.validity.valid) {
 		console.log('Invalid');
@@ -36,7 +36,7 @@ const isValid = (formElement, inputElement, validationSettings) => {
     hideInputError(formElement, inputElement, validationSettings);
   }
 }
-/*Включить/выключить кнопку Submit*/
+//Включить/выключить кнопку Submit
 const toggleButtonState = (inputList, submit, validationSettings) => {
   if (hasInvalidInput(inputList)) {
     submit.disabled = true;
@@ -46,7 +46,7 @@ const toggleButtonState = (inputList, submit, validationSettings) => {
     submit.classList.remove(validationSettings.inactiveButtonClass);
   }
 }
-/*Сама функция валидации*/
+//Сама функция валидации
 const enableValidation = (validationSettings) => {
   const formList = Array.from(document.querySelectorAll(validationSettings.formSelector));
 
@@ -54,7 +54,7 @@ const enableValidation = (validationSettings) => {
     setEventListeners(inputSelector, validationSettings);
   });
 }
-/*Слушатели на input с ошибкой валидации*/
+//Слушатели на input с ошибкой валидации
 function setEventListeners(formElement, validationSettings) {
 	const inputList = Array.from(formElement.querySelectorAll(validationSettings.inputSelector));
 	const submit = formElement.querySelector(validationSettings.submitButton);
@@ -65,4 +65,5 @@ function setEventListeners(formElement, validationSettings) {
     });
   });
 }
-export { enableValidation };
+
+export { enableValidation }

@@ -2,7 +2,7 @@ import { openPopup, closePopup } from "./modal.js";
 import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, popupConfirm, buttonConfirm, myId } from './utils.js';
 import { deleteCard, putLike, deleteLike } from './api.js';
 
-/*Добавление карточки*/
+//Добавление карточки
 function addCard(container, element) {
 	container.prepend(element);
 }
@@ -24,37 +24,38 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
 	const cardImage = cardElement.querySelector('.element__image');
 	const likeCounter = cardElement.querySelector('.element__like-counter');
 	const likeButton = cardElement.querySelector('#like-button');
-	likeCounter.textContent = likesLength;
-	
-	cardElement.querySelector('.element__title').textContent = name;
-  cardImage.src = link;
-	cardImage.alt = name;
-
+		likeCounter.textContent = likesLength;
+		cardElement.querySelector('.element__title').textContent = name;
+  	cardImage.src = link;
+		cardImage.alt = name;
+//мой лайк
 	if (likedByMe(likes, myId.id)) {
 		likeButton.classList.add('element__like_active');
 	}
-
+//лайки
 	likeButton.addEventListener('mousedown', function (evt) {
 		if (likedByMe(likes, myId.id)) {
-			console.log('deleteLike')
 			deleteLike(cardId)
 				.then((res) => {
-					console.log(res.likes.length)
 					likeCounter.textContent = res.likes.length;
 					evt.target.classList.toggle('element__like_active');
 					likes = res.likes;
+				})
+				.catch((err) => {
+					console.log(err);
 				});
 		} else {
-			console.log('putLike')
 			putLike(cardId)
 				.then((res) => {
 					likeCounter.textContent = res.likes.length;
 					evt.target.classList.toggle('element__like_active');
 					likes = res.likes;
+				})
+				.catch((err) => {
+					console.log(err);
 				});
 		}
 	});
-	
 	const deleteButton = cardElement.querySelector('#delete-button');
 	
 	if (myId.id != cardOwner) {
@@ -62,12 +63,17 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
   }
 	deleteButton.addEventListener('mousedown', function () {
 		openConfirmationPopup();
-		buttonConfirm.onclick = function (evt) {
+		buttonConfirm.addEventListener('mousedown', function (evt) {
 			evt.preventDefault();
-			deleteCard(cardId);
-			cardElement.remove();
-			closePopup(popupConfirm);
-		}
+			deleteCard(cardId)
+				.then(() => {
+					cardElement.remove();
+					closePopup(popupConfirm);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		});
 	});
 	cardImage.addEventListener('mousedown', function () {
 		openPopup (popupBigImage);

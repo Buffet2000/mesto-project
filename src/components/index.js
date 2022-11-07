@@ -10,14 +10,13 @@ Promise.all([getCards(), getProfile()])
   .then(([initialCards, profileData])=>{
     updateProfile (profileData.name, profileData.about, profileData._id, profileData.avatar);
     initialCards.reverse().forEach((cardInfo) => {
-      //console.log(cardInfo)
       addCard(cardContainer, create(cardInfo.name, cardInfo.link, cardInfo.likes.length, cardInfo.likes, cardInfo.owner._id, cardInfo._id))
     })
   }) 
   .catch((err)=>{
   console.log(err);
   });
-/*Открытие формы профиля*/
+//Открытие формы профиля
 function openProfileEditPopup () {
 	openPopup (popupProfileEdit);
 	inputProfileName.value = profileName.textContent;
@@ -25,7 +24,7 @@ function openProfileEditPopup () {
 	saveProfile.classList.add('popup__submit-button_disabled');
 	saveProfile.disabled = true;
 }
-/*Открытие формы добавления фото*/
+//Открытие формы добавления фото
 function openAddPhotoPopup () {
 	openPopup (popupPlaceAdd);
 	inputPlaceName.value = '';
@@ -47,13 +46,12 @@ function updateProfile (name, about, id, avatar) {
   profileOccupation.textContent = about;
 	avatarImage.src = avatar;
 }
-/*Слушатель с добавлением карточки на страницу*/
+//Слушатель с добавлением карточки на страницу
 placeForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
   createCard.textContent = 'Сохранение...';
 	postCard(inputPlaceName.value, inputPlaceLink.value)
     .then((data) => {
-      console.log(data)
       addCard(cardContainer, create(data.name, data.link, data.likes.length, data.likes, data.owner._id, data._id));
       closePopup (popupPlaceAdd);
     })
@@ -64,7 +62,7 @@ placeForm.addEventListener('submit', function (evt) {
       createCard.textContent = 'Создать';
     });
 });
-/*Сохранить отредактированный профиль*/
+//Сохранить отредактированный профиль
 profileForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
   saveProfile.textContent = 'Сохранение...';
@@ -96,11 +94,13 @@ popupEditAvatar.addEventListener('submit', function (evt) {
       saveAvatar.textContent = 'Сохранить';
     });
 });
-/*Слушатели для кнопок*/
+//Слушатели для кнопок
 buttonAddCard.addEventListener('click', openAddPhotoPopup);
 buttonProfileEdit.addEventListener('click', openProfileEditPopup);
 buttonEditAvatar.addEventListener('click', openAvatarEditPopup);
-/*Вызов валидации*/
+//Вызов валидации
 enableValidation (validationSettings);
 //Вызов закрытия по кнопке и оверлею
 closePopupByOverlay();
+const customError = inputPlaceName.getAttribute('data-error');
+console.log(inputPlaceName.getAttribute('data-error'))
