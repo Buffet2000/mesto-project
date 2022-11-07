@@ -7,32 +7,32 @@ const hasInvalidInput = (inputList) => {
 //Показать ошибку инпута
 const showInputError = (formElement, inputElement, validationMessage, validationSettings) => {
   const errorSpan = formElement.querySelector(`#${inputElement.name}_error`);
-	const inputPlaceName = document.querySelector(validationSettings.inputPlaceName);
+  const inputPlaceName = document.querySelector(validationSettings.inputPlaceName);
   const inputProfileName = document.querySelector(validationSettings.inputProfileName);
   //const customError = inputPlaceName.getAttribute('data-customError');
   inputElement.classList.add(validationSettings.inputErrorClass);
   errorSpan.textContent = validationMessage;
-	if (inputElement == inputPlaceName) {
-		errorSpan.textContent = inputPlaceName.getAttribute('data-error');
-	}
+  if (inputElement == inputPlaceName) {
+    errorSpan.textContent = inputPlaceName.getAttribute('data-error');
+  }
   if (inputElement == inputProfileName) {
-		errorSpan.textContent = inputProfileName.getAttribute('data-error');
-	}
+    errorSpan.textContent = inputProfileName.getAttribute('data-error');
+  }
 }
 //Скрыть ошибку инпута
 const hideInputError = (formElement, inputElement, validationSettings) => {
-	const errorSpan = formElement.querySelector(`#${inputElement.name}_error`);
+  const errorSpan = formElement.querySelector(`#${inputElement.name}_error`);
   inputElement.classList.remove(validationSettings.inputErrorClass);
   errorSpan.classList.remove(validationSettings.inputErrorActiveClass);
-	errorSpan.textContent = '';
+  errorSpan.textContent = '';
 }
 //Валидация пройдена
 const isValid = (formElement, inputElement, validationSettings) => {
   if (!inputElement.validity.valid) {
-		console.log('Invalid');
+    console.log('Invalid');
     showInputError(formElement, inputElement, inputElement.validationMessage, validationSettings);
   } else {
-		console.log('Valid')
+    console.log('Valid')
     hideInputError(formElement, inputElement, validationSettings);
   }
 }
@@ -56,12 +56,12 @@ const enableValidation = (validationSettings) => {
 }
 //Слушатели на input с ошибкой валидации
 function setEventListeners(formElement, validationSettings) {
-	const inputList = Array.from(formElement.querySelectorAll(validationSettings.inputSelector));
-	const submit = formElement.querySelector(validationSettings.submitButton);
-	inputList.forEach((inputElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(validationSettings.inputSelector));
+  const submit = formElement.querySelector(validationSettings.submitButton);
+  inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
-			isValid(formElement, inputElement, validationSettings);
-			toggleButtonState(inputList, submit, validationSettings);
+      isValid(formElement, inputElement, validationSettings);
+      toggleButtonState(inputList, submit, validationSettings);
     });
   });
 }
