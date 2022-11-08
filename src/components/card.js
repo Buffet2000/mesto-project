@@ -63,7 +63,7 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
   }
   deleteButton.addEventListener("mousedown", function () {
     openConfirmationPopup();
-    buttonConfirm.addEventListener("mousedown", function (evt) {
+    buttonConfirm.addEventListener("click", function (evt) {
       evt.preventDefault();
       deleteCard(cardId)
         .then(() => {
