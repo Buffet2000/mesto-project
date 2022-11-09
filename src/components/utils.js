@@ -24,14 +24,14 @@ const popupPlaceAdd = document.querySelector("#add_new_place");
 const inputPlaceName = document.querySelector(".popup__input_place-name");
 const inputPlaceLink = document.querySelector(".popup__input_place-link");
 const inputProfileName = document.querySelector(".popup__input_name");
-const inputProfileOccupation = document.querySelector(
-  ".popup__input_occupation"
-);
+const inputProfileOccupation = document.querySelector(".popup__input_occupation");
+//Ошибки span
+const placeNameError = document.querySelector("#place-name_error");
+const placeLinkError = document.querySelector("#place-link_error");
 //Список всех окон (popup)
 const popupList = document.querySelectorAll(".popup");
 //Контейнет для всех фото-карточек
 const cardContainer = document.querySelector(".elements");
-const deleteButton = document.querySelector("#delete-button");
 /*Переменная для template*/
 const cardTemplate = document.querySelector("#element-template").content;
 const likeCounter = document.querySelector(".element__like-counter");
@@ -49,9 +49,41 @@ const avatarImage = document.querySelector(".profile__avatar");
 //Попап для потверждения
 const popupConfirm = document.querySelector("#confirm_popup");
 const buttonConfirm = document.querySelector("#confirm");
-//карточка
-const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
 //Мой id пользоваткля
 const myId = {};
 
-export { buttonProfileEdit, popupProfileEdit, profileForm, profileName, profileOccupation, saveProfile, createCard, buttonAddCard, placeForm, popupPlaceAdd, inputPlaceName, inputPlaceLink, inputProfileName, inputProfileOccupation, cardContainer, popupList, popupBigImage, cardTemplate, bigImageImage, bigImageDescription, buttonEditAvatar, popupEditAvatar, saveAvatar, inputEditAvatar, avatarImage, popupConfirm, cardElement, deleteButton, buttonConfirm, likeCounter, likeButton, myId, validationSettings };
+export {
+  buttonProfileEdit,
+  popupProfileEdit,
+  profileForm,
+  profileName,
+  profileOccupation,
+  saveProfile,
+  createCard,
+  buttonAddCard,
+  placeForm,
+  popupPlaceAdd,
+  inputPlaceName,
+  inputPlaceLink,
+  inputProfileName,
+  inputProfileOccupation,
+  cardContainer,
+  popupList,
+  popupBigImage,
+  cardTemplate,
+  bigImageImage,
+  bigImageDescription,
+  buttonEditAvatar,
+  popupEditAvatar,
+  saveAvatar,
+  inputEditAvatar,
+  avatarImage,
+  popupConfirm,
+  buttonConfirm,
+  likeCounter,
+  likeButton,
+  myId,
+  validationSettings,
+  placeNameError,
+  placeLinkError,
+};

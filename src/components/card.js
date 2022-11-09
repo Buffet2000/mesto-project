@@ -1,5 +1,13 @@
 import { openPopup, closePopup } from "./modal.js";
-import { popupBigImage, cardTemplate, bigImageImage, bigImageDescription, popupConfirm, buttonConfirm, myId } from "./utils.js";
+import {
+  popupBigImage,
+  cardTemplate,
+  bigImageImage,
+  bigImageDescription,
+  popupConfirm,
+  buttonConfirm,
+  myId,
+} from "./utils.js";
 import { deleteCard, putLike, deleteLike } from "./api.js";
 
 //Добавление карточки
@@ -57,24 +65,15 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
     }
   });
   const deleteButton = cardElement.querySelector("#delete-button");
+  deleteButton.addEventListener("click", function () {//не понял почему "click" исправляет проблему? Можно ссылку или объяснение? Спасибо!
+    openConfirmationPopup();
+    deletedCardId = cardId;
+    deletedCardElement = cardElement;
+  });
 
   if (myId.id != cardOwner) {
     deleteButton.classList.remove("element__delete_active");
   }
-  deleteButton.addEventListener("mousedown", function () {
-    openConfirmationPopup();
-    buttonConfirm.addEventListener("click", function (evt) {
-      evt.preventDefault();
-      deleteCard(cardId)
-        .then(() => {
-          cardElement.remove();
-          closePopup(popupConfirm);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
-  });
   cardImage.addEventListener("mousedown", function () {
     openPopup(popupBigImage);
     bigImageImage.src = link;
@@ -83,5 +82,20 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
   });
   return cardElement;
 }
+
+let deletedCardId;
+let deletedCardElement;
+
+buttonConfirm.addEventListener("click", function (evt) {
+  evt.preventDefault();
+  deleteCard(deletedCardId)
+    .then(() => {
+      deletedCardElement.remove();
+      closePopup(popupConfirm);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 export { addCard, create };

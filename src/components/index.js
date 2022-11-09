@@ -32,6 +32,8 @@ import {
   avatarImage,
   myId,
   validationSettings,
+  placeNameError,
+  placeLinkError,
 } from "./utils.js";
 
 //Загрузить с сервера данные профиль/карточки
@@ -75,6 +77,13 @@ function openAddPhotoPopup() {
   inputPlaceLink.value = "";
   createCard.classList.add("popup__submit-button_disabled");
   createCard.disabled = true;
+  //Я тут попытался убрать сообщение ошибки, когда открываешь попап повторно. Ведь он обнуляет текст. Не знаю
+  //правильно ли. Если так по какой-то причине нельзя, то я просто уберу этот код.
+  //Жду комментария! Спасибо!
+  placeNameError.textContent = "";
+  placeLinkError.textContent = "";
+  inputPlaceName.classList.remove("popup__input_error");
+  inputPlaceLink.classList.remove("popup__input_error");
 }
 //Открытие попапа для редактирования аватара
 function openAvatarEditPopup() {
