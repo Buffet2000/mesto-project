@@ -65,7 +65,8 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
     }
   });
   const deleteButton = cardElement.querySelector("#delete-button");
-  deleteButton.addEventListener("click", function () {//не понял почему "click" исправляет проблему? Можно ссылку или объяснение? Спасибо!
+  deleteButton.addEventListener("click", function () {
+    //не понял почему "click" исправляет проблему? Можно ссылку или объяснение? Спасибо!
     openConfirmationPopup();
     deletedCardId = cardId;
     deletedCardElement = cardElement;
@@ -85,7 +86,8 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
 
 let deletedCardId;
 let deletedCardElement;
-
+//Я так понял, что мы записывает/перезаписываем саму удаляемую карточку и id и уже его посылаем в запрос DELETE.
+//Каждый раз нажимая на buttonConfirm мы перезаписываем данные. Как-то так... О_о
 buttonConfirm.addEventListener("click", function (evt) {
   evt.preventDefault();
   deleteCard(deletedCardId)
