@@ -46,8 +46,7 @@ Promise.all([getCards(), getProfile()])
       profileData.avatar
     );
     initialCards.reverse().forEach((cardInfo) => {
-      addCard(
-        cardContainer,
+      addCard(cardContainer,
         create(
           cardInfo.name,
           cardInfo.link,
@@ -77,9 +76,6 @@ function openAddPhotoPopup() {
   inputPlaceLink.value = "";
   createCard.classList.add("popup__submit-button_disabled");
   createCard.disabled = true;
-  //Я тут попытался убрать сообщение ошибки, когда открываешь попап повторно. Ведь он обнуляет текст. Не знаю
-  //правильно ли. Если так по какой-то причине нельзя, то я просто уберу этот код.
-  //Жду комментария! Спасибо!
   placeNameError.textContent = "";
   placeLinkError.textContent = "";
   inputPlaceName.classList.remove("popup__input_error");
