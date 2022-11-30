@@ -1,4 +1,4 @@
-import { openPopup, closePopup } from "./modal.js";
+//import { Popup } from "./modal.js";
 import {
   popupBigImage,
   cardTemplate,

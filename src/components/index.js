@@ -8,7 +8,7 @@ import {
 } from "./api.js";
 import { addCard, create } from "./card.js";
 import { enableValidation } from "./validate.js";
-import { closePopup, openPopup, closePopupByOverlay } from "./modal.js";
+import Popup from "./Popup.js";
 import {
   buttonProfileEdit,
   popupProfileEdit,
@@ -34,6 +34,7 @@ import {
   validationSettings,
   placeNameError,
   placeLinkError,
+  popupList,
 } from "./utils.js";
 
 //Загрузить с сервера данные профиль/карточки
@@ -63,7 +64,7 @@ Promise.all([getCards(), getProfile()])
   });
 //Открытие формы профиля
 function openProfileEditPopup() {
-  openPopup(popupProfileEdit);
+  new Popup().openPopup(popupProfileEdit);
   inputProfileName.value = profileName.textContent;
   inputProfileOccupation.value = profileOccupation.textContent;
   saveProfile.classList.add("popup__submit-button_disabled");
@@ -71,7 +72,7 @@ function openProfileEditPopup() {
 }
 //Открытие формы добавления фото
 function openAddPhotoPopup() {
-  openPopup(popupPlaceAdd);
+  new Popup().openPopup(popupPlaceAdd);
   inputPlaceName.value = "";
   inputPlaceLink.value = "";
   createCard.classList.add("popup__submit-button_disabled");
@@ -83,7 +84,7 @@ function openAddPhotoPopup() {
 }
 //Открытие попапа для редактирования аватара
 function openAvatarEditPopup() {
-  openPopup(popupEditAvatar);
+  new Popup().openPopup(popupEditAvatar);
   saveAvatar.classList.add("popup__submit-button_disabled");
   saveAvatar.disabled = true;
   inputEditAvatar.value = "";
@@ -160,4 +161,5 @@ buttonEditAvatar.addEventListener("click", openAvatarEditPopup);
 //Вызов валидации
 enableValidation(validationSettings);
 //Вызов закрытия по кнопке и оверлею
-closePopupByOverlay();
+new Popup(popupList).setEventListeners();
+new Popup.closeByEscape();
