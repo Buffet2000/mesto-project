@@ -64,7 +64,7 @@ Promise.all([getCards(), getProfile()])
   });
 //Открытие формы профиля
 function openProfileEditPopup() {
-  new Popup().openPopup(popupProfileEdit);
+  new Popup(popupProfileEdit).open();
   inputProfileName.value = profileName.textContent;
   inputProfileOccupation.value = profileOccupation.textContent;
   saveProfile.classList.add("popup__submit-button_disabled");
@@ -72,7 +72,7 @@ function openProfileEditPopup() {
 }
 //Открытие формы добавления фото
 function openAddPhotoPopup() {
-  new Popup().openPopup(popupPlaceAdd);
+  new Popup(popupPlaceAdd).open();
   inputPlaceName.value = "";
   inputPlaceLink.value = "";
   createCard.classList.add("popup__submit-button_disabled");
@@ -84,7 +84,7 @@ function openAddPhotoPopup() {
 }
 //Открытие попапа для редактирования аватара
 function openAvatarEditPopup() {
-  new Popup().openPopup(popupEditAvatar);
+  new Popup(popupEditAvatar).open();
   saveAvatar.classList.add("popup__submit-button_disabled");
   saveAvatar.disabled = true;
   inputEditAvatar.value = "";
@@ -160,6 +160,3 @@ buttonProfileEdit.addEventListener("click", openProfileEditPopup);
 buttonEditAvatar.addEventListener("click", openAvatarEditPopup);
 //Вызов валидации
 enableValidation(validationSettings);
-//Вызов закрытия по кнопке и оверлею
-new Popup(popupList).setEventListeners();
-new Popup.closeByEscape();

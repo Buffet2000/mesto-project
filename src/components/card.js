@@ -1,4 +1,4 @@
-//import { Popup } from "./modal.js";
+import Popup from "./Popup.js";
 import {
   popupBigImage,
   cardTemplate,
@@ -75,7 +75,7 @@ function create(name, link, likesLength, likes, cardOwner, cardId) {
     deleteButton.classList.remove("element__delete_active");
   }
   cardImage.addEventListener("mousedown", function () {
-    openPopup(popupBigImage);
+    new Popup(popupBigImage).open();
     bigImageImage.src = link;
     bigImageImage.alt = name;
     bigImageDescription.textContent = name;
