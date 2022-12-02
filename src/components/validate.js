@@ -62,3 +62,6 @@ function setEventListeners(formElement, validationSettings) {
 }
 
 export { enableValidation }
+export default class formValidator {
+  constructor()
+}
