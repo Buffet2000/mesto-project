@@ -90,3 +90,26 @@ function deleteLike(cardId) {
 }
 
 export { getCards, getProfile, patchAvatar, patchProfile, postCard, deleteCard, putLike, deleteLike };
+
+export default class Api {
+  constructor (config) {
+    this._baseUrl = config.baseUrl;
+    this._headers = config.headers;
+  }
+  checkResponse(res) {
+    if (res.ok) {
+      //console.log(res);
+      return res.json();
+    } else {
+      console.log("Отклонено");
+      return Promise.reject(res.statusText);
+    }
+  }
+  getCards() {
+    return fetch("https://nomoreparties.co/v1/plus-cohort-14/cards", {
+      method: "GET",
+      headers: config.headers,
+    }).then(checkResponse);
+  }
+  
+}
